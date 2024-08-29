@@ -180,25 +180,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    	status_command i3status
-        position top
-        strip_workspace_numbers yes
-        tray_output none
-        colors {
-            background #121212
-                statusline #ffffff
-                separator #808080
-#                  border  backgr. text
-                focused_workspace  #B3E5FC #B3E5FC #000000
-                active_workspace   #999999 #999999 #ffffff
-                inactive_workspace #999999 #999999 #000000
-                urgent_workspace   #2f343a #900000 #ffffff
-        }
-}
-
 # Set the wallpaper using feh
 exec xrdb merge .Xresources
 exec feh --bg-scale .config/i3/wallpaper.png --fill
@@ -236,7 +217,9 @@ bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date)"
 # bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 # exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id unclutter
-exec_always dispwin -c /home/mazin/.config/t495.icc
+exec_always xcalib /home/mazin/.color/ultrawide.icc
 # exec --no-startup-id easyeffects --gapplication-service
+exec_always --no-startup-id ~/.config/polybar/shades/launch.sh
+
 ###############################################
 exec autorandr -c
