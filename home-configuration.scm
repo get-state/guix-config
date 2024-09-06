@@ -38,6 +38,8 @@
 					    "bibata-cursor-theme"
 					    "rbw"
 					    "pinentry-tty"
+					    "font-google-noto"
+					    "direnv"
 					    "aerc"
 					    "mpv")))
 
