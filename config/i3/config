@@ -5,6 +5,36 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+# Colors
+set $rosewater #dc8a78
+set $flamingo #dd7878
+set $pink #ea76cb
+set $mauve #8839ef
+set $red #d20f39
+set $maroon #e64553
+set $peach #fe640b
+set $yellow #df8e1d
+set $green #40a02b
+set $teal #179299
+set $sky #04a5e5
+set $sapphire #209fb5
+set $blue #1e66f5
+set $lavender #7287fd
+set $text #4c4f69
+set $subtext1 #5c5f77
+set $subtext0 #6c6f85
+set $overlay2 #7c7f93
+set $overlay1 #8c8fa1
+set $overlay0 #9ca0b0
+set $surface2 #acb0be
+set $surface1 #bcc0cc
+set $surface0 #ccd0da
+set $base #eff1f5
+set $mantle #e6e9ef
+set $crust #dce0e8
+
+
+
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -21,12 +51,14 @@ font pango:Atkinson Hyperlegible 15
 
 #Needed for i3-gaps
 #hide_edge_borders both
-default_border pixel 7
-default_floating_border pixel 7
-for_window [class=".*"] border pixel 7
+default_border pixel 8
+default_floating_border pixel 8
+for_window [class=".*"] border pixel 8
 gaps inner 15 
 gaps outer 10
-smart_gaps on
+gaps top 50
+
+smart_gaps off
 smart_borders on
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -46,7 +78,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "dmenu_run -i -nf '#F8F8F2' -nb '#222222' -sb '#e57373' -sf '#000000' -fn 'IBM Plex Sans Medium-13'" 
+bindsym $mod+d exec "dmenu_run -i -nf '$text' -nb '$mantle' -sb '$lavender' -sf '$base' -fn 'Iosevka Term-16'" 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -110,7 +142,7 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+grave exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # set no border
-bindsym $mod+u border pixel 7
+bindsym $mod+u border pixel 0
 
 bindsym $mod+Shift+z exec /home/mazin/Dev/scripts/mon-brightness.py -S 10
 bindsym $mod+Shift+x exec /home/mazin/Dev/scripts/mon-brightness.py -A 10
@@ -182,13 +214,18 @@ bindsym $mod+r mode "resize"
 
 # Set the wallpaper using feh
 exec xrdb merge .Xresources
-exec feh --bg-scale .config/i3/wallpaper.png --fill
+exec feh --bg-fill .config/i3/wallpaper.png
 
-# Colors
-client.focused          #999999 #999999 #000000 #dddddd
-client.focused_inactive #333333 #333333 #c6ff00 #ffffff
-client.unfocused        #444444 #444444 #888888 #292d2e
-client.urgent           #2f343a #808080 #000000 #dddddd
+			 # For light mode, set border to 50575C
+			 # For dark mode, set border to 88bfc1
+
+# target                 title     bg    text   indicator  border
+client.focused           #4f4a44   $base $text  $rosewater #4f4a44
+client.focused_inactive  #ECE9E6   $base $text  $rosewater #322e28
+client.unfocused         $322e28   $base $text  $rosewater #322e28
+client.urgent            $peach    $base $peach $overlay0  $peach
+# client.placeholder     $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 
 #steam enable floating
@@ -215,7 +252,7 @@ bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date)"
 
 
 # bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
-# exec_always --no-startup-id picom --experimental-backends
+exec_always --no-startup-id picom --vsync --use-damage --backend glx
 exec_always --no-startup-id unclutter
 exec_always xcalib /home/mazin/.color/ultrawide.icc
 # exec --no-startup-id easyeffects --gapplication-service

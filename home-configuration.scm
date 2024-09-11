@@ -6,12 +6,16 @@
 
 (use-modules (gnu home)
              (gnu packages)
+             (gnu packages gnupg)
              (gnu services)
              (gnu home services)
              (gnu home services xdg)
              (gnu home services shepherd)
              (gnu home services sound)
              (gnu home services desktop)
+             (gnu home services gnupg)
+             (gnu home services ssh)
+             (rnrs io ports)
              (gnu services shepherd)
              (guix gexp)
              (gnu home services shells))
@@ -21,7 +25,6 @@
   ;; Home profile, under ~/.guix-home/profile.
   (packages (specifications->packages (list "feh"
                                             "lf"
-                                            "icecat"
                                             "git"
                                             "neovim"
                                             "font-iosevka-term"
@@ -29,19 +32,34 @@
                                             "ungoogled-chromium"
                                             "firefox"
                                             "xcalib"
-					    "curl"
+                                            "xclip"
+                                            "curl"
                                             "feh"
+                                            "picom"
                                             "ncmpcpp"
                                             "mpd"
-					    "gimp"
-					    "openssh"
-					    "bibata-cursor-theme"
-					    "rbw"
-					    "pinentry-tty"
-					    "font-google-noto"
-					    "direnv"
-					    "aerc"
-					    "mpv")))
+                                            "gimp"
+                                            "openssh"
+                                            "bibata-cursor-theme"
+                                            "easyeffects"
+                                            "file"
+                                            "zathura"
+                                            "zathura-pdf-mupdf"
+                                            "file"
+                                            "pulsemixer"
+                                            "ncdu"
+                                            "rbw"
+                                            "dconf"
+                                            "pinentry-tty"
+                                            "font-google-noto"
+                                            "font-google-noto-sans-cjk"
+                                            "ranger"
+                                            "intel-media-driver"
+                                            "xrdb"
+                                            "gnupg"
+                                            "direnv"
+                                            "aerc"
+                                            "mpv")))
 
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
@@ -86,10 +104,31 @@
                                                                   (videos
                                                                    "$HOME/Videos")))
 
-         ; Dbus is needed as a dependency 
-	 (service home-dbus-service-type)
-         ; Configure pipewire service, should enable pulseaudio
+         ;; Dbus is needed as a dependency
+         (service home-dbus-service-type)
+         ;; Configure pipewire service, should enable pulseaudio
          (service home-pipewire-service-type)
+
+         (service home-fish-service-type
+                  (home-fish-configuration (config (list (local-file
+                                                          "config/fish/config.fish")))))
+
+         (simple-service 'some-useful-env-vars-service
+                         home-environment-variables-service-type
+                         `(("EDITOR" . "nvim")))
+
+         (service home-gpg-agent-service-type
+                  (home-gpg-agent-configuration (pinentry-program (file-append
+                                                                   pinentry-tty
+                                                                   "/bin/pinentry-tty"))
+                                                (ssh-support? #f)))
+
+         (service home-openssh-service-type
+                  (home-openssh-configuration (add-keys-to-agent "yes")))
+
+         (service home-ssh-agent-service-type
+                  (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
+
 
          (simple-service `wm-config home-xdg-configuration-files-service-type
                          `(("i3/config" ,(local-file "config/i3/config"))
@@ -97,11 +136,21 @@
                                                "config/alacritty/alacritty.toml"))
 
                            ("fontconfig/conf.d/99-fonts.conf" ,(local-file
-                                               "config/fontconfig/fonts.conf"))
+                                                                "config/fontconfig/fonts.conf"))
+                           ("picom/picom.conf" ,(local-file
+                                                 "config/picom/picom.conf"))
                            ("polybar/shades" ,(local-file "config/shades"
                                                           #:recursive? #t))
-                           ("nvim" ,(local-file "config/nvim"
-                                                #:recursive? #t))
+                           ;; ("nvim" ,(local-file "config/nvim"
+                           ;; #:recursive? #t))
+                           
+                           ;; ("fish/functions" ,(local-file "config/fish/functions"
+                           ;; #:recursive? #t))
+                           ;; ("fish/completions" ,(local-file "config/fish/completions"
+                           ;; #:recursive? #t))
+                           ;; ("fish/conf.d" ,(local-file "config/fish/conf.d"
+                           ;; #:recursive? #t))
+                           ;; ("fish/fish_variables" ,(local-file "config/fish/fish_variables"))
                            ("mpd" ,(local-file "config/mpd"
                                                #:recursive? #t))
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"

@@ -12,12 +12,12 @@ playlist_display_mode = "columns"
 
 ## General Colors ##
 colors_enabled = "yes"
-main_window_color = "white"
+main_window_color = "default"
 header_window_color = "cyan"
 volume_color = "green"
-statusbar_color = "white"
+statusbar_color = "default"
 progressbar_color = "cyan"
-progressbar_elapsed_color = "white"
+progressbar_elapsed_color = "default"
 
 ## Song List ##
 song_columns_list_format = "(10)[blue]{l} (30)[green]{t} (30)[magenta]{a} (30)[yellow]{b}"

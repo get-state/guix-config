@@ -1,6 +1,6 @@
 [window]
 
-opacity = 0.9
+opacity = 0.95
 
 padding.x = 20
 padding.y = 20
@@ -8,17 +8,18 @@ padding.y = 20
 
 [font]
 
-normal.family = "Iosevka Term"
-normal.style = "medium"
+normal.family = "IosevkaTerm NFP"
 
 size = 14.0
 
 # Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
 # Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a 
 # small box when a HEX is detected by the editor.
-
+# Nightfox Alacritty Colors
+## name: dayfox
+## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/dayfox/alacritty.toml
 [colors.primary]
-background = "#222222"
+background = "#322e28"
 foreground = "#ffffff"
 dim_foreground = "#7f849c"
 bright_foreground = "#cdd6f4"
