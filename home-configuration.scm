@@ -98,7 +98,7 @@
 
                            ("fontconfig/conf.d/99-fonts.conf" ,(local-file
                                                "config/fontconfig/fonts.conf"))
-                           ("polybar/shades" ,(local-file "config/shades"
+                           ("polybar/shades2" ,(local-file "config/shades"
                                                           #:recursive? #t))
                            ("nvim" ,(local-file "config/nvim"
                                                 #:recursive? #t))
