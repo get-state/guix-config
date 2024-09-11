@@ -352,7 +352,7 @@ require("nvim-surround").setup({
 require("gitsigns").setup()
 
 require("catppuccin").setup({
-	flavour = "mocha", -- latte, frappe, macchiato, mocha
+	flavour = "latte", -- latte, frappe, macchiato, mocha
 	background = { -- :h background
 		light = "latte",
 		dark = "mocha",
@@ -395,9 +395,9 @@ require("catppuccin").setup({
 	},
 	custom_highlights = function(colors)
 		return {
-			Comment = { fg = "#989898" },
-			LineNr = { fg = "#989898", bg = "#1e1e1e" },
-			CursorLineNr = { fg = "#ffffff", bg = "#535353" },
+			-- Comment = { fg = "#989898" },
+			-- LineNr = { fg = "#989898", bg = "#1e1e1e" },
+			-- CursorLineNr = { fg = "#ffffff", bg = "#535353" },
 			CmpItemKindSnippet = { fg = colors.base, bg = colors.mauve },
 			CmpItemKindKeyword = { fg = colors.base, bg = colors.red },
 			CmpItemKindText = { fg = colors.base, bg = colors.teal },
