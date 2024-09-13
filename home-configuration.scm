@@ -12,6 +12,7 @@
              (gnu home services shepherd)
              (gnu home services sound)
              (gnu home services desktop)
+             (rnrs io ports)
              (gnu services shepherd)
              (guix gexp)
              (gnu home services shells))
@@ -32,6 +33,7 @@
                                             "xclip"
 					    "curl"
                                             "feh"
+                                            "picom"
                                             "ncmpcpp"
                                             "mpd"
 					    "gimp"
@@ -40,6 +42,7 @@
 					    "rbw"
 					    "pinentry-tty"
 					    "font-google-noto"
+					    "font-google-noto-sans-cjk"
 					    "xrdb"
 					    "direnv"
 					    "aerc"
@@ -92,6 +95,10 @@
 	 (service home-dbus-service-type)
          ; Configure pipewire service, should enable pulseaudio
          (service home-pipewire-service-type)
+         
+	 (service home-fish-service-type
+					(home-fish-configuration 
+					  (config (list (local-file "config/fish/config.fish")))))
 
          (simple-service `wm-config home-xdg-configuration-files-service-type
                          `(("i3/config" ,(local-file "config/i3/config"))
@@ -104,6 +111,14 @@
                                                           #:recursive? #t))
                            ("nvim" ,(local-file "config/nvim"
                                                 #:recursive? #t))
+
+                           ; ("fish/functions" ,(local-file "config/fish/functions"
+                           ;                      #:recursive? #t))
+                           ; ("fish/completions" ,(local-file "config/fish/completions"
+                           ;                      #:recursive? #t))
+                           ; ("fish/conf.d" ,(local-file "config/fish/conf.d"
+                           ;                      #:recursive? #t))
+                           ; ("fish/fish_variables" ,(local-file "config/fish/fish_variables"))
                            ("mpd" ,(local-file "config/mpd"
                                                #:recursive? #t))
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"
