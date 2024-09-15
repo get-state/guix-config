@@ -22,7 +22,6 @@
   ;; Home profile, under ~/.guix-home/profile.
   (packages (specifications->packages (list "feh"
                                             "lf"
-                                            "icecat"
                                             "git"
                                             "neovim"
                                             "font-iosevka-term"
@@ -107,10 +106,12 @@
 
                            ("fontconfig/conf.d/99-fonts.conf" ,(local-file
                                                "config/fontconfig/fonts.conf"))
+                           ("picom/picom.conf" ,(local-file
+                                               "config/picom/picom.conf"))
                            ("polybar/shades" ,(local-file "config/shades"
                                                           #:recursive? #t))
-                           ("nvim" ,(local-file "config/nvim"
-                                                #:recursive? #t))
+                           ; ("nvim" ,(local-file "config/nvim"
+                           ;                      #:recursive? #t))
 
                            ; ("fish/functions" ,(local-file "config/fish/functions"
                            ;                      #:recursive? #t))

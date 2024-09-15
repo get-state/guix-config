@@ -56,7 +56,9 @@ default_floating_border pixel 7
 for_window [class=".*"] border pixel 7
 gaps inner 15 
 gaps outer 10
-smart_gaps on
+gaps top 40
+
+smart_gaps off
 smart_borders on
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -216,8 +218,8 @@ exec feh --bg-fill .config/i3/wallpaper.png
 
 
 # target                 title     bg    text   indicator  border
-client.focused           $lavender $base $text  $rosewater $lavender
-client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.focused           #88BFC1   $base $text  $rosewater #88BFC1
+client.focused_inactive  #ECE9E6   $base $text  $rosewater #ECE9E6
 client.unfocused         $overlay0 $base $text  $rosewater $overlay0
 client.urgent            $peach    $base $peach $overlay0  $peach
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
