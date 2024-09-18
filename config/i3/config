@@ -51,12 +51,12 @@ font pango:Atkinson Hyperlegible 15
 
 #Needed for i3-gaps
 #hide_edge_borders both
-default_border pixel 7
-default_floating_border pixel 7
-for_window [class=".*"] border pixel 7
+default_border pixel 8
+default_floating_border pixel 8
+for_window [class=".*"] border pixel 8
 gaps inner 15 
 gaps outer 10
-gaps top 40
+gaps top 50
 
 smart_gaps off
 smart_borders on
@@ -142,7 +142,7 @@ bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
 bindsym $mod+grave exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
 
 # set no border
-bindsym $mod+u border pixel 7
+bindsym $mod+u border pixel 0
 
 bindsym $mod+Shift+z exec /home/mazin/Dev/scripts/mon-brightness.py -S 10
 bindsym $mod+Shift+x exec /home/mazin/Dev/scripts/mon-brightness.py -A 10
@@ -216,13 +216,15 @@ bindsym $mod+r mode "resize"
 exec xrdb merge .Xresources
 exec feh --bg-fill .config/i3/wallpaper.png
 
+			 # For light mode, set border to 50575C
+			 # For dark mode, set border to 88bfc1
 
 # target                 title     bg    text   indicator  border
-client.focused           #88BFC1   $base $text  $rosewater #88BFC1
+client.focused           #50575c   $base $text  $rosewater #50575c
 client.focused_inactive  #ECE9E6   $base $text  $rosewater #ECE9E6
-client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $ece9e6   $base $text  $rosewater #ece9e6
 client.urgent            $peach    $base $peach $overlay0  $peach
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# client.placeholder     $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 

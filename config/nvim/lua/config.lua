@@ -58,6 +58,7 @@ require("lazy").setup(
         "ray-x/lsp_signature.nvim",
         "lukas-reineke/indent-blankline.nvim",
         "jakewvincent/texmagic.nvim",
+  	"neanias/everforest-nvim",
         {"xuhdev/vim-latex-live-preview", ft = "tex"},
         {"catppuccin/nvim", name = "catppuccin", priority = 1000}
     },
@@ -530,7 +531,7 @@ require("catppuccin").setup(
     }
 )
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd([[colorscheme everforest]])
 
 -- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
 -- vim.api.nvim_set_hl(0, 'PmenuKindSel', { bg = "#1e1e1e" })
@@ -546,6 +547,7 @@ require("lualine").setup(
             disabled_filetypes = {statusline = {}, winbar = {}},
             ignore_focus = {},
             always_divide_middle = true,
+	    theme = "everforest",
             globalstatus = false,
             refresh = {statusline = 1000, tabline = 1000, winbar = 1000}
         },
