@@ -5,6 +5,7 @@
 (use-modules (gnu)
              (nongnu packages linux)
              (gnu packages shells)
+             (gnu services xorg)
              (gnu system nss)
              (guix utils))
 (use-service-modules desktop)
@@ -70,8 +71,7 @@
                  (comment "")
                  (group "users")
                  (password #f)
-		 ;this is currently broken
-		 (shell (file-append fish "/bin/fish"))
+                 (shell (file-append fish "/bin/fish"))
                  (supplementary-groups '("wheel" "netdev" "audio" "video")))
                %base-user-accounts))
 
@@ -83,22 +83,26 @@
                      dmenu
                      xterm
                      alacritty
-		     fish
-		     fish-foreign-env
+                     fish
+                     fish-foreign-env
                      polybar
                      i3lock
                      neovim) %base-packages))
 
   (services
-   (modify-services %desktop-services
-     (guix-service-type config =>
-                        (guix-configuration (inherit config)
-                                            (substitute-urls (append (list
-                                                                      "https://substitutes.nonguix.org")
-                                                              %default-substitute-urls))
-                                            (authorized-keys (append (list (local-file
-                                                                            "./signing-key.pub"))
-                                                              %default-authorized-guix-keys))))))
+   (append (list (service startx-command-service-type
+                          (xorg-configuration (drivers (list "modesetting")))))
+           (modify-services %desktop-services
+             (guix-service-type config =>
+                                (guix-configuration (inherit config)
+                                                    (substitute-urls (append (list
+                                                                              "https://substitutes.nonguix.org")
+                                                                      %default-substitute-urls))
+                                                    (authorized-keys (append (list
+                                                                              (local-file
+                                                                               "./signing-key.pub"))
+                                                                      %default-authorized-guix-keys))))
+             (delete gdm-service-type))))
 
   ;; Allow resolution of '.local' host names with mDNS.
   (name-service-switch %mdns-host-lookup-nss))

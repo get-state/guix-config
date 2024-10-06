@@ -129,6 +129,9 @@
          (service home-ssh-agent-service-type
                   (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
 
+	 (simple-service `home-config home-files-service-type 
+			 `((".xinitrc" , (local-file "config/xinitrc"))))
+
 
          (simple-service `wm-config home-xdg-configuration-files-service-type
                          `(("i3/config" ,(local-file "config/i3/config"))
