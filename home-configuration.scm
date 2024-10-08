@@ -129,10 +129,16 @@
          (service home-ssh-agent-service-type
                   (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
 
-	 (simple-service `home-config home-files-service-type 
-			 `((".xinitrc" , (local-file "config/xinitrc"))))
+         ;; Moves fonts and other configs in $HOME.
+         (simple-service `home-config home-files-service-type
+                         `((".xinitrc" ,(local-file "config/other/xinitrc"))
+                           (".Xresources" ,(local-file
+                                            "config/other/Xresources"))
+                           (".gtkrc-2.0" ,(local-file "config/other/gtkrc-2.0"))
+                           (".local/share/fonts" ,(local-file "config/fonts"
+                                                              #:recursive? #t))))
 
-
+         ;; Handles configs that adhere to XDG.
          (simple-service `wm-config home-xdg-configuration-files-service-type
                          `(("i3/config" ,(local-file "config/i3/config"))
                            ("alacritty.toml" ,(local-file
@@ -142,18 +148,18 @@
                                                                 "config/fontconfig/fonts.conf"))
                            ("picom/picom.conf" ,(local-file
                                                  "config/picom/picom.conf"))
+
+                           ("gtk-3.0/settings.ini" ,(local-file
+                                                     "config/other/gtk3-settings.ini"))
+
                            ("polybar/shades" ,(local-file "config/shades"
                                                           #:recursive? #t))
                            ;; ("nvim" ,(local-file "config/nvim"
                            ;; #:recursive? #t))
                            
-                           ;; ("fish/functions" ,(local-file "config/fish/functions"
+                           ;; ("fish/" ,(local-file "config/fish/extras"
                            ;; #:recursive? #t))
-                           ;; ("fish/completions" ,(local-file "config/fish/completions"
-                           ;; #:recursive? #t))
-                           ;; ("fish/conf.d" ,(local-file "config/fish/conf.d"
-                           ;; #:recursive? #t))
-                           ;; ("fish/fish_variables" ,(local-file "config/fish/fish_variables"))
+                           
                            ("mpd" ,(local-file "config/mpd"
                                                #:recursive? #t))
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"
