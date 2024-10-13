@@ -37,6 +37,7 @@
                                             "feh"
                                             "picom"
                                             "ncmpcpp"
+                                            "irssi"
                                             "mpd"
                                             "gimp"
                                             "openssh"
@@ -54,6 +55,7 @@
                                             "font-google-noto"
                                             "font-google-noto-sans-cjk"
                                             "ranger"
+                                            "maim"
                                             "intel-media-driver"
                                             "xrdb"
                                             "gnupg"
@@ -74,16 +76,6 @@
                    (bash-profile (list (local-file "./.bash_profile"
                                                    "bash_profile")))))
 
-         (service home-shepherd-service-type
-                  (home-shepherd-configuration (services (list (shepherd-service
-                                                                (provision '(mpd))
-                                                                (start #~(make-system-constructor
-                                                                          "mpd"))
-                                                                (stop #~(make-system-destructor
-                                                                         "mpd"
-                                                                         "--kill"))
-                                                                (documentation
-                                                                 "Start the Music Player Daemon"))))))
 
          (simple-service 'xdg-user-directories-config-service
                          home-xdg-user-directories-service-type
@@ -160,7 +152,5 @@
                            ;; ("fish/" ,(local-file "config/fish/extras"
                            ;; #:recursive? #t))
                            
-                           ("mpd" ,(local-file "config/mpd"
-                                               #:recursive? #t))
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"
                                                    #:recursive? #t)))))))

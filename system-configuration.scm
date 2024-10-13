@@ -6,6 +6,7 @@
              (nongnu packages linux)
              (gnu packages shells)
              (gnu services xorg)
+             (gnu services audio)
              (gnu system nss)
              (guix utils))
 (use-service-modules desktop)
@@ -91,7 +92,10 @@
 
   (services
    (append (list (service startx-command-service-type
-                          (xorg-configuration (drivers (list "modesetting")))))
+                          (xorg-configuration (drivers (list "modesetting"))))
+                 (service mpd-service-type
+                          (mpd-configuration (user-account "mazin")
+			  (playlist-directory "~/Music/playlists"))))
            (modify-services %desktop-services
              (guix-service-type config =>
                                 (guix-configuration (inherit config)
