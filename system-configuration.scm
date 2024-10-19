@@ -5,8 +5,10 @@
 (use-modules (gnu)
              (nongnu packages linux)
              (gnu packages shells)
+             (gnu packages hardware)
              (gnu services xorg)
              (gnu services audio)
+             (gnu services pm)
              (gnu system nss)
              (guix utils))
 (use-service-modules desktop)
@@ -18,8 +20,24 @@
                      suckless
                      vim)
 
+(define t495-hostname
+  #t)
+(define intel-desktop-hostname
+  #f)
+(define my-desktop-services
+  (modify-services %desktop-services
+     (guix-service-type config =>
+                        (guix-configuration (inherit config)
+                                            (substitute-urls (append (list
+                                                                      "https://substitutes.nonguix.org")
+                                                              %default-substitute-urls))
+                                            (authorized-keys (append (list (local-file
+                                                                            "./signing-key.pub"))
+                                                              %default-authorized-guix-keys))))
+     (delete gdm-service-type)))
+
 (operating-system
-  (host-name "mazin-desktop")
+  (host-name (if t495-hostname "Thinkpad-t495" "GUIX-desktop"))
   (timezone "Asia/Bahrain")
   (locale "en_US.utf8")
   (kernel linux)
@@ -27,7 +45,8 @@
 
   ;; Choose US English keyboard layout.  The "altgr-intl"
   ;; variant provides dead keys for accented characters.
-  (keyboard-layout (keyboard-layout "us" "altgr-intl"))
+  (keyboard-layout (keyboard-layout "gb" "altgr-intl"
+                                    #:options '("ctrl:nocaps")))
 
   ;; Use the UEFI variant of GRUB with the EFI System
   ;; Partition mounted on /boot/efi.
@@ -84,6 +103,7 @@
                      dmenu
                      xterm
                      alacritty
+                     brillo
                      fish
                      fish-foreign-env
                      polybar
@@ -93,20 +113,13 @@
   (services
    (append (list (service startx-command-service-type
                           (xorg-configuration (drivers (list "modesetting"))))
-                 (service mpd-service-type
-                          (mpd-configuration (user-account "mazin")
-			  (playlist-directory "~/Music/playlists"))))
-           (modify-services %desktop-services
-             (guix-service-type config =>
-                                (guix-configuration (inherit config)
-                                                    (substitute-urls (append (list
-                                                                              "https://substitutes.nonguix.org")
-                                                                      %default-substitute-urls))
-                                                    (authorized-keys (append (list
-                                                                              (local-file
-                                                                               "./signing-key.pub"))
-                                                                      %default-authorized-guix-keys))))
-             (delete gdm-service-type))))
+                 (if t495-hostname
+                     (udev-rules-service 'brillo brillo))
+                 (service tlp-service-type
+                           (tlp-configuration (cpu-scaling-governor-on-ac (list
+                                                                           "schedutil"))
+                                              (sched-powersave-on-bat? #t))))
+            my-desktop-services))
 
   ;; Allow resolution of '.local' host names with mDNS.
   (name-service-switch %mdns-host-lookup-nss))

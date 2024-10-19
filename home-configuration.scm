@@ -33,6 +33,7 @@
                                             "firefox"
                                             "xcalib"
                                             "xclip"
+                                            "xmodmap"
                                             "curl"
                                             "feh"
                                             "picom"
@@ -49,6 +50,7 @@
                                             "file"
                                             "pulsemixer"
                                             "ncdu"
+                                            "brillo"
                                             "rbw"
                                             "dconf"
                                             "pinentry-tty"
@@ -120,6 +122,16 @@
 
          (service home-ssh-agent-service-type
                   (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
+
+	(service home-xmodmap-service-type
+         (home-xmodmap-configuration
+          (key-map '(("remove Lock" . "Caps_Lock")
+                     ("remove Control" . "Control_L")
+                     ("keysym Control_L" . "Caps_Lock")
+                     ("keysym Caps_Lock" . "Control_L")
+                     ("add Lock" . "Caps_Lock")
+                     ("add Control" . "Control_L")))))
+ 
 
          ;; Moves fonts and other configs in $HOME.
          (simple-service `home-config home-files-service-type

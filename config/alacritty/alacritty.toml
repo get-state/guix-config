@@ -8,9 +8,9 @@ padding.y = 20
 
 [font]
 
-normal.family = "IosevkaTerm NFP"
+normal.family = "Iosevka Nerd Font"
 
-size = 14.0
+size = 12.0
 
 # Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
 # Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a 
