@@ -56,7 +56,7 @@ default_floating_border pixel 8
 for_window [class=".*"] border pixel 8
 gaps inner 15 
 gaps outer 10
-gaps top 50
+gaps top 40
 
 smart_gaps off
 smart_borders on

@@ -78,7 +78,6 @@
                    (bash-profile (list (local-file "./.bash_profile"
                                                    "bash_profile")))))
 
-
          (simple-service 'xdg-user-directories-config-service
                          home-xdg-user-directories-service-type
                          (home-xdg-user-directories-configuration (desktop
@@ -116,6 +115,12 @@
                                                                    pinentry-tty
                                                                    "/bin/pinentry-tty"))
                                                 (ssh-support? #f)))
+
+         (service home-shepherd-service-type
+                  (home-shepherd-configuration (services (list (shepherd-service
+                                                                (provision '(mpd))
+                                                                (start #~(make-system-constructor
+                                                                          "mpd")))))))
 
          (service home-openssh-service-type
                   (home-openssh-configuration (add-keys-to-agent "yes")))
@@ -161,8 +166,8 @@
                            ;; ("nvim" ,(local-file "config/nvim"
                            ;; #:recursive? #t))
                            
-                           ;; ("fish/" ,(local-file "config/fish/extras"
-                           ;; #:recursive? #t))
+                           ; ("mpd" ,(local-file "config/mpd"
+                           ;  #:recursive? #t))
                            
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"
                                                    #:recursive? #t)))))))
