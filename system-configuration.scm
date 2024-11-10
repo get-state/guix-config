@@ -24,7 +24,7 @@
                      vim)
 
 (define t495-hostname
-  #f)
+  #t)
 (define is-laptop?
   t495-hostname)
 (define my-desktop-services

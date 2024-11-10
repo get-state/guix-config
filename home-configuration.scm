@@ -50,6 +50,7 @@
                                             "file"
                                             "pulsemixer"
                                             "ncdu"
+                                            "alsa-utils"
                                             "brillo"
                                             "rbw"
                                             "dconf"
