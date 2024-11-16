@@ -6,11 +6,12 @@
              (nongnu packages linux)
              (nongnu system linux-initrd)
              (gnu packages shells)
-	     (gnu packages hardware)
+             (gnu packages hardware)
              (gnu services ssh)
              (gnu services audio)
              (gnu services xorg)
              (gnu services pm)
+             (gnu services nix)
              (gnu services security-token)
              (gnu system nss)
              (guix utils))
@@ -20,24 +21,28 @@
                      wm
                      xorg
                      terminals
+                     package-management
                      suckless
                      vim)
 
 (define t495-hostname
-  #t)
+  #f)
 (define is-laptop?
   t495-hostname)
 (define my-desktop-services
   (append (list (service startx-command-service-type
                          (xorg-configuration (drivers (list "modesetting"))))
-		(service openssh-service-type
-         (openssh-configuration ))
-(service screen-locker-service-type
-         (screen-locker-configuration
-          (name "i3lock")
-          (program (file-append slock "/bin/i3lock"))))
+                (service openssh-service-type
+                         (openssh-configuration))
+                (service screen-locker-service-type
+                         (screen-locker-configuration (name "i3lock")
+                                                      (program (file-append
+                                                                slock
+                                                                "/bin/i3lock"))))
 
-	(service pcscd-service-type)) 
+                (service nix-service-type)
+
+                (service pcscd-service-type))
 
           (modify-services %desktop-services
             (guix-service-type config =>
@@ -69,7 +74,7 @@
 
   ;; Choose US English keyboard layout.  The "altgr-intl"
   ;; variant provides dead keys for accented characters.
-  (keyboard-layout (keyboard-layout "gb" "altgr-intl"
+  (keyboard-layout (keyboard-layout "us"
                                     #:options '("ctrl:nocaps")))
 
   ;; Use the UEFI variant of GRUB with the EFI System
@@ -95,19 +100,14 @@
                                 (type "btrfs")
                                 (options "subvol=snapshots"))
                               (file-system
-                                (device (file-system-label "data"))
-                                (mount-point "/var")
-                                (type "btrfs")
-                                (options "subvol=var"))
-                              (file-system
                                 (device (file-system-label "EFI"))
                                 (mount-point "/boot/EFI")
                                 (type "vfat"))) %base-file-systems))
 
   ;; Specify a swap file for the system, which resides on the
   ;; root file system.
-;  (swap-devices (swap-space
-;                        (target (file-system-label "swap"))))
+  (swap-devices (list (swap-space
+                        (target (file-system-label "swap")))))
 
   ;; Create user `bob' with `alice' as its initial password.
   (users (cons (user-account
@@ -130,6 +130,7 @@
                      brillo
                      fish
                      fish-foreign-env
+                     nix
                      polybar
                      i3lock
                      neovim) %base-packages))

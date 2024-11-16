@@ -47,8 +47,10 @@
                                             "file"
                                             "zathura"
                                             "zathura-pdf-mupdf"
+                                            "newsboat"
                                             "file"
                                             "pulsemixer"
+                                            "steam"
                                             "ncdu"
                                             "alsa-utils"
                                             "brillo"
@@ -115,7 +117,7 @@
          (service home-gpg-agent-service-type
                   (home-gpg-agent-configuration (pinentry-program (file-append
                                                                    pinentry-tty
-                                                                   "/bin/pinentry-tty"))
+                                                                   "/bin/pinentry-curses"))
                                                 (ssh-support? #f)))
 
          (service home-shepherd-service-type
@@ -129,8 +131,6 @@
 
          (service home-ssh-agent-service-type
                   (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
-
- 
 
          ;; Moves fonts and other configs in $HOME.
          (simple-service `home-config home-files-service-type
@@ -157,11 +157,12 @@
 
                            ("polybar/shades" ,(local-file "config/shades"
                                                           #:recursive? #t))
-                           ;; ("nvim" ,(local-file "config/nvim"
+
+                           ("newsboat" ,(local-file "config/newsboat"
+                                                    #:recursive? #t))
+
+                           ;; ("mpd" ,(local-file "config/mpd"
                            ;; #:recursive? #t))
-                           
-                           ; ("mpd" ,(local-file "config/mpd"
-                           ;  #:recursive? #t))
                            
                            ("ncmpcpp" ,(local-file "config/ncmpcpp"
                                                    #:recursive? #t)))))))
