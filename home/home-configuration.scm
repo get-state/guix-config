@@ -74,16 +74,7 @@
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
-   (list (service home-bash-service-type
-                  (home-bash-configuration
-                   (aliases '(("grep" . "grep --color=auto")
-                              ("ip" . "ip -color=auto")
-                              ("ll" . "ls -l")
-                              ("ls" . "ls -p --color=auto")))
-                   (bashrc (list (local-file "./.bashrc" "bashrc")))
-                   (bash-profile (list (local-file "./.bash_profile"
-                                                   "bash_profile")))))
-
+   (list 
          (simple-service 'xdg-user-directories-config-service
                          home-xdg-user-directories-service-type
                          (home-xdg-user-directories-configuration (desktop
@@ -110,7 +101,7 @@
 
          (service home-fish-service-type
                   (home-fish-configuration (config (list (local-file
-                                                          "config/fish/config.fish")))))
+                                                          "../config/fish/config.fish")))))
 
          (simple-service 'some-useful-env-vars-service
                          home-environment-variables-service-type
@@ -136,35 +127,35 @@
 
          ;; Moves fonts and other configs in $HOME.
          (simple-service `home-config home-files-service-type
-                         `((".xinitrc" ,(local-file "config/other/xinitrc"))
+                         `((".xinitrc" ,(local-file "../config/other/xinitrc"))
                            (".Xresources" ,(local-file
-                                            "config/other/Xresources"))
-                           (".gtkrc-2.0" ,(local-file "config/other/gtkrc-2.0"))
-                           (".local/share/fonts" ,(local-file "config/fonts"
+                                            "../config/other/Xresources"))
+                           (".gtkrc-2.0" ,(local-file "../config/other/gtkrc-2.0"))
+                           (".local/share/fonts" ,(local-file "../config/fonts"
                                                               #:recursive? #t))))
 
          ;; Handles configs that adhere to XDG.
          (simple-service `wm-config home-xdg-configuration-files-service-type
-                         `(("i3/config" ,(local-file "config/i3/config"))
+                         `(("i3/config" ,(local-file "../config/i3/config"))
                            ("alacritty.toml" ,(local-file
-                                               "config/alacritty/alacritty.toml"))
+                                               "../config/alacritty/alacritty.toml"))
 
                            ("fontconfig/conf.d/99-fonts.conf" ,(local-file
-                                                                "config/fontconfig/fonts.conf"))
+                                                                "../config/fontconfig/fonts.conf"))
                            ("picom/picom.conf" ,(local-file
-                                                 "config/picom/picom.conf"))
+                                                 "../config/picom/picom.conf"))
 
                            ("gtk-3.0/settings.ini" ,(local-file
-                                                     "config/other/gtk3-settings.ini"))
+                                                     "../config/other/gtk3-settings.ini"))
 
-                           ("polybar/shades" ,(local-file "config/shades"
+                           ("polybar/shades" ,(local-file "../config/shades"
                                                           #:recursive? #t))
 
-                           ("newsboat" ,(local-file "config/newsboat"
+                           ("newsboat" ,(local-file "../config/newsboat"
                                                     #:recursive? #t))
 
                            ;; ("mpd" ,(local-file "config/mpd"
                            ;; #:recursive? #t))
                            
-                           ("ncmpcpp" ,(local-file "config/ncmpcpp"
+                           ("ncmpcpp" ,(local-file "../config/ncmpcpp"
                                                    #:recursive? #t)))))))

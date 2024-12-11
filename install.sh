@@ -4,15 +4,13 @@ select_file_from_systems() {
     local subdir="systems"
 
     if [[ -d "$subdir" ]]; then
-        echo "Listing all files in the subdirectory '$subdir':"
-        
         # List files with numbering
         files=("$subdir"/*) # Array of all files in the subdirectory
         for i in "${!files[@]}"; do
             printf "%3d) %s\n" "$((i + 1))" "${files[$i]}"
         done
 
-        echo "\nEnter the number of the file you want to select:"
+        echo "Enter the number of the file you want to select:"
         read -r selected_index
 
         # Validate selection
