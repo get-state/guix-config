@@ -1,11 +1,18 @@
 (define-module (config systems tohsakanode)
-#:use-module (systems base-system)
-#:use-module (gnu)
-#:use-module (guix))
+  #:use-module (systems base-system)
+  #:use-module (gnu)
+  #:use-module (gnu services xorg)
+  #:use-module (guix))
 
 (operating-system
   (inherit base-system)
   (host-name "tohsakanode")
-  (services laptop-services)
-  (keyboard-layout (keyboard-layout "uk"
-                                    #:options '("ctrl:nocaps"))))
+  (keyboard-layout (keyboard-layout "gb"
+                                    #:options '("ctrl:nocaps")))
+
+  (services
+   (modify-services laptop-services
+     (startx-command-service-type config =>
+                                  (xorg-configuration (keyboard-layout
+                                                       keyboard-layout))))))
+

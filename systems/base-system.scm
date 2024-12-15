@@ -15,7 +15,7 @@
   #:use-module (gnu services security-token)
   #:use-module (gnu system nss)
   #:use-module (guix utils)
-  #:export (default-services base-system))
+  #:export (default-services base-system laptop-services))
 
 (use-service-modules desktop)
 (use-package-modules bootloaders
