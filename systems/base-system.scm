@@ -12,6 +12,7 @@
   #:use-module (gnu services xorg)
   #:use-module (gnu services pm)
   #:use-module (gnu services nix)
+  #:use-module (gnu services networking)
   #:use-module (gnu services security-token)
   #:use-module (gnu system nss)
   #:use-module (guix utils)
@@ -49,8 +50,9 @@
                                                                              (local-file
                                                                               "../signing-key.pub"))
                                                                      %default-authorized-guix-keys))))
-            (delete gdm-service-type))))
-
+            (delete gdm-service-type)
+	    (network-manager-service-type config => (network-manager-configuration 
+						     (inherit config))))))
 (define laptop-services
   (append (list (udev-rules-service 'brillo brillo)
                 (service tlp-service-type

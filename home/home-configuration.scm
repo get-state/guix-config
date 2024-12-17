@@ -62,6 +62,7 @@
                                             "font-google-noto"
                                             "font-google-noto-sans-cjk"
                                             "ranger"
+                                            "htop"
                                             "senpai"
                                             "maim"
                                             "intel-media-driver"
