@@ -65,6 +65,7 @@
                                             "htop"
                                             "senpai"
                                             "maim"
+                                            "man-pages"
                                             "intel-media-driver"
                                             "xrdb"
                                             "gnupg"
