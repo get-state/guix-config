@@ -10,11 +10,13 @@
   #:use-module (gnu services ssh)
   #:use-module (gnu services audio)
   #:use-module (gnu services xorg)
+  #:use-module (gnu services containers)
   #:use-module (gnu services pm)
   #:use-module (gnu services nix)
   #:use-module (gnu services networking)
   #:use-module (gnu services security-token)
   #:use-module (gnu system nss)
+  #:use-module (gnu system accounts)
   #:use-module (guix utils)
   #:export (default-services base-system laptop-services))
 
@@ -39,6 +41,14 @@
                                                                 slock
                                                                 "/bin/i3lock"))))
                 (service nix-service-type)
+                (service iptables-service-type)
+                (service rootless-podman-service-type
+                         (rootless-podman-configuration (subgids (list (subid-range
+                                                                        (name
+                                                                         "mazin"))))
+                                                        (subuids (list (subid-range
+                                                                        (name
+                                                                         "mazin"))))))
                 (service pcscd-service-type))
           (modify-services %desktop-services
             (guix-service-type config =>
@@ -51,8 +61,9 @@
                                                                               "../signing-key.pub"))
                                                                      %default-authorized-guix-keys))))
             (delete gdm-service-type)
-	    (network-manager-service-type config => (network-manager-configuration 
-						     (inherit config))))))
+            (network-manager-service-type config =>
+                                          (network-manager-configuration (inherit
+                                                                          config))))))
 (define laptop-services
   (append (list (udev-rules-service 'brillo brillo)
                 (service tlp-service-type
@@ -113,8 +124,8 @@
                    (group "users")
                    (password #f)
                    (shell (file-append fish "/bin/fish"))
-                   (supplementary-groups '("wheel" "netdev" "audio" "video")))
-                 %base-user-accounts))
+                   (supplementary-groups '("wheel" "netdev" "audio" "video"
+                                           "cgroup"))) %base-user-accounts))
 
     ;; This is where we specify system-wide packages.
     (packages (append (list

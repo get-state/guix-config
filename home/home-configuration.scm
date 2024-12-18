@@ -48,6 +48,7 @@
                                             "file"
                                             "fzf"
                                             "zathura"
+                                            "distrobox"
                                             "zathura-pdf-mupdf"
                                             "newsboat"
                                             "file"
