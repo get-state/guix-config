@@ -18,6 +18,7 @@
   #:use-module (gnu system nss)
   #:use-module (gnu system accounts)
   #:use-module (guix utils)
+  #:use-module (packages neovim)
   #:export (default-services base-system laptop-services))
 
 (use-service-modules desktop)
@@ -141,7 +142,7 @@
                        nix
                        polybar
                        i3lock
-                       neovim) %base-packages))
+                       neovim-0.10.2) %base-packages))
 
     (services
      default-services)
