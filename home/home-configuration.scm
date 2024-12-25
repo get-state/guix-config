@@ -47,6 +47,7 @@
                                             "fzf"
                                             "zathura"
                                             "distrobox"
+                                            "git:send-email"
                                             "zathura-pdf-mupdf"
                                             "newsboat"
                                             "file"
