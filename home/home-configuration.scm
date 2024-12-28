@@ -29,6 +29,7 @@
                                             "font-iosevka-term"
                                             "font-atkinson-hyperlegible"
                                             "firefox"
+                                            "ungoogled-chromium"
                                             "xcalib"
                                             "xclip"
                                             "xmodmap"
