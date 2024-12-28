@@ -45,6 +45,7 @@
                                             "easyeffects"
                                             "file"
                                             "fzf"
+                                            "ripgrep"
                                             "zathura"
                                             "distrobox"
                                             "zathura-pdf-mupdf"
