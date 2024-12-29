@@ -50,6 +50,7 @@
                                             "zathura"
                                             "distrobox"
                                             "zathura-pdf-mupdf"
+                                            "zathura-djvu"
                                             "newsboat"
                                             "file"
                                             "pulsemixer"
