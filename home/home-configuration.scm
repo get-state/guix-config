@@ -13,6 +13,7 @@
              (gnu home services shepherd)
              (gnu home services sound)
              (gnu home services desktop)
+             (gnu packages xdisorg)
              (gnu home services gnupg)
              (gnu home services ssh)
              (rnrs io ports)
@@ -78,8 +79,7 @@
   ;; Below is the list of Home services.  To search for available
   ;; services, run 'guix home search KEYWORD' in a terminal.
   (services
-   (list 
-         (simple-service 'xdg-user-directories-config-service
+   (list (simple-service 'xdg-user-directories-config-service
                          home-xdg-user-directories-service-type
                          (home-xdg-user-directories-configuration (desktop
                                                                    "$HOME/Desktop")
@@ -129,14 +129,22 @@
          (service home-ssh-agent-service-type
                   (home-ssh-agent-configuration (extra-options '("-t" "1h30m"))))
 
+         (service home-x11-service-type)
+
+         (service home-unclutter-service-type
+                  (home-unclutter-configuration (unclutter unclutter-xfixes)
+                                                (idle-timeout 8)))
+
          ;; Moves fonts and other configs in $HOME.
          (simple-service `home-config home-files-service-type
                          `((".xinitrc" ,(local-file "../config/other/xinitrc"))
                            (".Xresources" ,(local-file
                                             "../config/other/Xresources"))
-                           (".gtkrc-2.0" ,(local-file "../config/other/gtkrc-2.0"))
-                           (".local/share/fonts" ,(local-file "../config/fonts"
-                                                              #:recursive? #t))))
+                           (".gtkrc-2.0" ,(local-file
+                                           "../config/other/gtkrc-2.0"))
+                           (".local/share/fonts" ,(local-file
+                                                   "../config/fonts"
+                                                   #:recursive? #t))))
 
          ;; Handles configs that adhere to XDG.
          (simple-service `wm-config home-xdg-configuration-files-service-type
