@@ -78,7 +78,7 @@
     (host-name "base-system")
     (timezone "Asia/Bahrain")
     (locale "en_US.utf8")
-    (kernel linux)
+    (kernel linux-6.12)
     (initrd microcode-initrd)
     (firmware (list linux-firmware))
 
@@ -142,7 +142,7 @@
                        nix
                        polybar
                        i3lock
-                       neovim-0.10.2) %base-packages))
+                       neovim-0.10) %base-packages))
 
     (services
      default-services)

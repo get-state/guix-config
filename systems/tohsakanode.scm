@@ -1,4 +1,4 @@
-(define-module (config systems tohsakanode)
+(define-module (systems tohsakanode)
   #:use-module (systems base-system)
   #:use-module (gnu)
   #:use-module (gnu services xorg)
