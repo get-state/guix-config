@@ -8,7 +8,7 @@
 (define-public tree-sitter-0.24
   (package
     (inherit tree-sitter)
-    (version "0.24.6")
+    (version "0.24.7")
     (source
      (origin
        (method git-fetch)
@@ -16,7 +16,7 @@
              (url "https://github.com/tree-sitter/tree-sitter")
              (commit (string-append "v" version))))
        (sha256
-        (base32 "06h4gzia4fb04a59llxrch63k4sbhz17ickqmmr9qggy58cdk7aj"))))))
+        (base32 "1shg4ylvshs9bf42l8zyskfbkpzpssj6fhi3xv1incvpcs2c1fcw"))))))
 
 (define-public neovim-0.10
   (package
