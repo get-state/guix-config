@@ -21,7 +21,7 @@
 (define-public neovim-0.10
   (package
     (inherit neovim)
-    (version "0.10.3")
+    (version "0.10.4")
     (source
      (origin
        (method git-fetch)
@@ -29,6 +29,6 @@
              (url "https://github.com/neovim/neovim")
              (commit (string-append "v" version))))
        (sha256
-        (base32 "01646f9wa47dmpcx8gpgzaxhz8bm6z44y9m9ixiwrw2dk1lsilcs"))))
+        (base32 "007v6aq4kdwcshlp8csnp12cx8c0yq8yh373i916ddqnjdajn3z3"))))
     (inputs (modify-inputs (package-inputs neovim)
               (replace "tree-sitter" tree-sitter-0.24)))))
