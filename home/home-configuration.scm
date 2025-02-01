@@ -47,6 +47,7 @@
                                             "easyeffects"
                                             "file"
                                             "fzf"
+                                            "nushell"
                                             "ripgrep"
                                             "zathura"
                                             "distrobox"
@@ -109,7 +110,8 @@
 
                  (simple-service 'some-useful-env-vars-service
                                  home-environment-variables-service-type
-                                 `(("EDITOR" . "nvim")))
+                                 `(("EDITOR" . "nvim")
+                                   ("TERMINAL" . "alacritty -e")))
 
                  (service home-gpg-agent-service-type
                           (home-gpg-agent-configuration (pinentry-program (file-append
@@ -167,6 +169,9 @@
                                    ("gtk-3.0/settings.ini" ,(local-file
                                                              "../config/other/gtk3-settings.ini"))
 
+                                   ("mimeapps.list" ,(local-file
+                                                      "../config/mime/mimeapps.list"))
+
                                    ("polybar/shades" ,(local-file
                                                        "../config/shades"
                                                        #:recursive? #t))
@@ -174,6 +179,9 @@
                                    ("newsboat" ,(local-file
                                                  "../config/newsboat"
                                                  #:recursive? #t))
+
+                                   ("lf" ,(local-file "../config/lf"
+                                                      #:recursive? #t))
 
                                    ;; ("mpd" ,(local-file "config/mpd"
                                    ;; #:recursive? #t))

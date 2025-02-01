@@ -134,7 +134,6 @@
                        i3-wm
                        i3status
                        dmenu
-                       xterm
                        alacritty
                        brillo
                        fish
