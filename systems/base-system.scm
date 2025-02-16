@@ -78,7 +78,7 @@
     (host-name "base-system")
     (timezone "Asia/Bahrain")
     (locale "en_US.utf8")
-    (kernel linux-6.12)
+    (kernel linux)
     (initrd microcode-initrd)
     (firmware (list linux-firmware))
 
