@@ -172,6 +172,10 @@
                                    ("mimeapps.list" ,(local-file
                                                       "../config/mime/mimeapps.list"))
 
+                                   ("pipewire/pipewire.conf.d/sink-eq6.conf" ,
+                                    (local-file
+                                     "../config/pipewire/sink-eq6.conf"))
+
                                    ("polybar/shades" ,(local-file
                                                        "../config/shades"
                                                        #:recursive? #t))
