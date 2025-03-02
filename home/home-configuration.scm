@@ -39,7 +39,7 @@
                                             "picom"
                                             "ncmpcpp"
                                             "mpd"
-                                            "gimp"
+                                            "gimp-next"
                                             "openssh"
                                             "xdg-utils"
                                             "b4"
