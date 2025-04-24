@@ -141,7 +141,7 @@
                        nix
                        polybar
                        i3lock
-                       neovim-0.10) %base-packages))
+                       neovim-0.11) %base-packages))
 
     (services
      default-services)
