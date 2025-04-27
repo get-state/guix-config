@@ -4,6 +4,7 @@
 (define-module (systems base-system)
   #:use-module (gnu)
   #:use-module (nongnu packages linux)
+  #:use-module (nongnu packages firmware)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages hardware)
@@ -21,6 +22,7 @@
   #:use-module (gnu system nss)
   #:use-module (gnu system accounts)
   #:use-module (guix utils)
+  #:use-module (small-guix services fwupd)
   #:use-module (packages neovim)
   #:export (default-services base-system laptop-services))
 
@@ -46,6 +48,7 @@
                                                                 "/bin/i3lock"))))
                 (service nix-service-type)
                 (service iptables-service-type)
+                (service fwupd-service-type (fwupd-configuration (fwupd fwupd-nonfree)))
                 (service rootless-podman-service-type
                          (rootless-podman-configuration (subgids (list (subid-range
                                                                         (name
