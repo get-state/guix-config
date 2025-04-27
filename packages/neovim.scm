@@ -11,6 +11,7 @@
   #:use-module (gnu packages textutils)
   #:use-module (guix licenses))
 
+; TODO fix tests
 ; Just disable the check/test phase.
 (define-public utf8proc-2.10.0
   (hidden-package (package
