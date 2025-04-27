@@ -7,7 +7,10 @@
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages shells)
   #:use-module (gnu packages hardware)
+  #:use-module (gnu packages freedesktop)
   #:use-module (gnu services ssh)
+  #:use-module (gnu services authentication)
+  #:use-module (gnu system pam)
   #:use-module (gnu services audio)
   #:use-module (gnu services xorg)
   #:use-module (gnu services containers)
@@ -67,6 +70,28 @@
                                                                           config))))))
 (define laptop-services
   (append (list (udev-rules-service 'brillo brillo)
+                (service fprintd-service-type)
+                (simple-service 'my-pam-service pam-root-service-type
+                                (let ((my-pam-entry (pam-entry (control
+                                                                "sufficient")
+                                                               (module (file-append
+                                                                        fprintd
+                                                                        "/lib/security/pam_fprintd.so")))))
+                                  (list (pam-extension (transformer (lambda (pam)
+                                                                      (if (string=?
+                                                                           "sudo"
+                                                                           (pam-service-name
+                                                                            pam))
+                                                                          (pam-service
+                                                                           (inherit
+                                                                            pam)
+                                                                           (auth
+                                                                            (append
+                                                                             (pam-service-auth
+                                                                              pam)
+                                                                             (list
+                                                                              my-pam-entry))))
+                                                                          pam)))))))
                 (service tlp-service-type
                          (tlp-configuration (cpu-scaling-governor-on-ac (list
                                                                          "schedutil"))
@@ -136,6 +161,8 @@
                        dmenu
                        alacritty
                        brillo
+                       fprintd
+                       libfprint
                        fish
                        fish-foreign-env
                        nix
