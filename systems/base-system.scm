@@ -48,7 +48,8 @@
                                                                 "/bin/i3lock"))))
                 (service nix-service-type)
                 (service iptables-service-type)
-                (service fwupd-service-type (fwupd-configuration (fwupd fwupd-nonfree)))
+                (service fwupd-service-type
+                         (fwupd-configuration (fwupd fwupd-nonfree)))
                 (service rootless-podman-service-type
                          (rootless-podman-configuration (subgids (list (subid-range
                                                                         (name
@@ -98,6 +99,8 @@
                 (service tlp-service-type
                          (tlp-configuration (cpu-scaling-governor-on-ac (list
                                                                          "schedutil"))
+                                            (start-charge-thresh-bat0 30)
+                                            (stop-charge-thresh-bat0 40)
                                             (sched-powersave-on-bat? #t))))
           default-services))
 
