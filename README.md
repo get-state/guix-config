@@ -1,63 +1,77 @@
+```markdown
+# Guix Config Repository
 
-# Guix Home Configuration
+This repository contains my personal configuration files for Guix System and Guix Home. The setup focuses on a reproducible, customizable environment, particularly optimized for the `i3` window manager and Neovim for development.
 
-This repository contains my Guix System/Home configuration files, enabling a reproducible and customizable `i3` environment. Below is an overview of the packages, services, and configurations used in this setup.
+---
 
-## Packages
+## Repository Overview
 
-The following packages are included in the home profile for a versatile environment:
+### Key Features
+- **Custom Guix System Configurations**: Tailored to match specific requirements for both Guix System and Home.
+- **Neovim Configuration**: Extensive plugin setup using `lazy.nvim`, supporting modern editing features like LSP (Language Server Protocol), syntax highlighting, and auto-completion.
+- **Desktop Environment**:
+  - `i3` window manager setup.
+  - `Picom` for compositor.
+  - `Polybar`, `Alacritty`, and other GUI configurations.
+- **Audio & Media Management**:
+  - Configured with `PipeWire` and `MPD`.
+- **Shell Customization**:
+  - Based on `Fish/nu` shell with specific extensions and environment variables.
 
-- **Tools & Utilities**: `feh`, `lf`, `git`, `curl`, `ncdu`, `file`, `xclip`, `zathura`, `zathura-pdf-mupdf`, `ranger`, `openssh`, `mpv`, `ncmpcpp`, `rg`, `fzf`
-- **Development Tools**: `neovim`, `gnupg`, `direnv`, `rbw`, `aerc`
-- **Fonts**: `font-iosevka-term`, `font-atkinson-hyperlegible`, `font-google-noto`, `font-google-noto-sans-cjk`
-- **Browsers**: `ungoogled-chromium`, `firefox`
-- **Media**: `mpd`, `gimp`, `easyeffects`, `pulsemixer`
-- **Other**: `bibata-cursor-theme`, `picom`, `xcalib`
+---
 
-## Home Services
+## Configuration Highlights
 
 ### Shell Configuration
-- **Fish**: Fish shell configuration is included, with the main config file sourced from the `config/fish/config.fish`.
+- **Fish Shell**: Includes configuration sourced from `config/fish/config.fish`. Environment variables, aliases, and customizations are set here.
+- **Environment Variables**:
+  - **Default Editor**: `nvim` (Neovim).
+  - **GPG Agent**: Configured for `pinentry-tty`.
+  - **SSH Agent**: Customized session duration.
 
-### Desktop and Media
-- **PipeWire**: Configured for audio services with PulseAudio compatibility.
-- **Picom**: Configuration is included for the compositor.
-- **MPD**: Managed through the Shepherd init system, ensuring the Music Player Daemon starts and stops properly.
-- **XDG Directories**: Sets up common directories like `$HOME/Documents`, `$HOME/Music`, and `$HOME/Downloads`.
-- 
+### Desktop Environment
+- **i3 Window Manager**: Configured for simplicity and efficiency.
+- **Polybar and Picom**: Enhancing the appearance and functionalities of the desktop environment.
+- **XDG Directories**: Automatically sets up user directories like `$HOME/Documents` and `$HOME/Music`.
 
-### Environment Variables
-- **EDITOR**: Set to `nvim` to use Neovim as the default editor.
+### Neovim Configuration
+Located under `config/nvim/lua/config.lua`. Key highlights:
+- **Plugin Manager**: Uses `lazy.nvim` for efficient plugin loading.
+- **Customization**: Includes themes like `kanagawa` and `catppuccin`, along with configurations for LSP, Treesitter, and more.
+- **Development Tools**: Provides support for languages like Lua, Python, and Rust using LSP servers.
 
-### GPG and SSH
-- **GPG Agent**: Configured with `pinentry-tty` for GPG key management. SSH support is disabled.
-- **SSH Agent**: Includes additional options for session duration (`-t 1h30m`).
+### Package List
+- **Development Tools**: `neovim`, `direnv`, `gnupg`.
+- **Utilities**: `lf`, `ncdu`, `mpv`.
+- **Media**: `mpd`, `ncmpcpp`.
+- **Fonts**: `font-iosevka-term`, `font-google-noto-sans-cjk`.
+- **Browsers**: `firefox`, `ungoogled-chromium`.
 
-### Miscellaneous
-- **DBus**: Included as a dependency for several desktop services.
-- **User Files**: Configuration files like `.xinitrc`, i3 window manager, Alacritty, MPD, NCMPCPP, Polybar, and fontconfig are loaded from the local `config/` directory.
+---
 
-## Installation
+## File Structure
 
-To apply this configuration on your system, use the following commands and replace x with the system:
+A brief overview of key files:
+- **`README.md`**: Contains high-level documentation.
+- **`install.sh`**: A script for setting up the system and user configurations on a fresh system.
+- **`config/nvim/lua/config.lua`**: Neovim configuration file with plugin, theme, and LSP settings.
+- **`config/fish/config.fish`**: Shell configuration file for Fish.
+- **`systems/*.scm`**: Guix System configurations.
 
-```bash
-sh ./install.sh
-guix -L pathToRepo system reconfigure pathToRepo/systems/x.scm
-guix home reconfigure home-environment.scm
-```
-
-Make sure to capture your current Guix channels using `guix describe` to ensure the configuration is fully reproducible or use the provided `channels-lock.scm` file.
-
-### Replication
-
-For full reproducibility of this setup, ensure you also replicate the exact Guix channels and commit using:
-
-```bash
-guix describe
-```
+---
 
 ## Contribution
 
-Feel free to open issues or submit pull requests for improvements or new features.
+This is a personal configuration repository but feel free to suggest improvements or report issues.
 
+---
+
+## License
+
+This repository does not have a license file, so it is proprietary by default.
+
+---
+
+For any questions or assistance, visit the [GitHub repository](https://github.com/get-state/guix-config).
+```
