@@ -3,7 +3,7 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "e899121adbaa13cfcaeae7a5c24921bffa645771")
+          "ff1ede27b0514724212b310a0ce248b5ff2158ab")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
@@ -21,11 +21,22 @@
             (openpgp-fingerprint
               "9E53 FC33 B832 8C74 5E7B  31F7 0226 C10D 7877 B741"))))
       (channel
+        (name 'small-guix)
+        (url "https://codeberg.org/fishinthecalculator/small-guix.git")
+        (branch "main")
+        (commit
+          "ee0784433a5f9f9b268a8be770c26a5d9bfc1b9a")
+        (introduction
+          (make-channel-introduction
+            "f260da13666cd41ae3202270784e61e062a3999c"
+            (openpgp-fingerprint
+              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
+      (channel
         (name 'guix)
-        (url "https://git.savannah.gnu.org/git/guix.git")
+        (url "https://codeberg.org/guix/guix-mirror")
         (branch "master")
         (commit
-          "699ce22ed812cf8cfcdd8d0341829f8fac2c864a")
+          "8dff81313876a54519ce17e9fda64d4310e2dd5c")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
