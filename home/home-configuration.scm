@@ -30,7 +30,6 @@
                                             "font-iosevka-term"
                                             "font-atkinson-hyperlegible"
                                             "firefox"
-                                            "ungoogled-chromium"
                                             "xcalib"
                                             "xclip"
                                             "xmodmap"
@@ -41,13 +40,14 @@
                                             "mpd"
                                             "gimp"
                                             "openssh"
+                                            "signal-desktop"
                                             "xdg-utils"
+                                            "libreoffice"
+                                            "yazi"
                                             "b4"
                                             "bibata-cursor-theme"
-                                            "easyeffects"
                                             "file"
                                             "fzf"
-                                            "nushell"
                                             "nu-plugin-inc"
                                             "nu-plugin-formats"
                                             "nu-plugin-gstat"
@@ -166,6 +166,9 @@
                                    ("alacritty.toml" ,(local-file
                                                        "../config/alacritty/alacritty.toml"))
 
+                                   ("nushell/login.nu" ,(local-file
+                                                       "../config/nu/login.nu"))
+
                                    ("fontconfig/conf.d/99-fonts.conf" ,(local-file
                                                                         "../config/fontconfig/fonts.conf"))
                                    ("picom/picom.conf" ,(local-file
@@ -177,9 +180,10 @@
                                    ("mimeapps.list" ,(local-file
                                                       "../config/mime/mimeapps.list"))
 
-                                   ("pipewire/pipewire.conf.d/sink-eq6.conf" ,
-                                    (local-file
-                                     "../config/pipewire/sink-eq6.conf"))
+                                   ("pipewire/pipewire.conf.d" ,(local-file
+                                                                 "../config/pipewire"
+                                                                 #:recursive?
+                                                                 #t))
 
                                    ("polybar/shades" ,(local-file
                                                        "../config/shades"

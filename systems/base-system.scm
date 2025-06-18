@@ -7,6 +7,7 @@
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages shells)
+  #:use-module (gnu packages nushell)
   #:use-module (gnu packages hardware)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu services ssh)
@@ -155,7 +156,7 @@
                    (comment "")
                    (group "users")
                    (password #f)
-                   (shell (file-append fish "/bin/fish"))
+                   (shell (file-append nushell "/bin/nu"))
                    (supplementary-groups '("wheel" "netdev" "audio" "video"
                                            "cgroup"))) %base-user-accounts))
 
@@ -166,6 +167,7 @@
                        i3status
                        dmenu
                        alacritty
+                       nushell
                        brillo
                        fprintd
                        libfprint

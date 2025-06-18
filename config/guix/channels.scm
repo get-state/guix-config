@@ -16,6 +16,15 @@
            "c72e15e84c4a9d199303aa40a81a95939db0cfee"
            (openpgp-fingerprint "9E53FC33B8328C745E7B31F70226C10D7877B741"))))
        (channel
+         (name 'saayix)
+         (branch "main")
+         (url "https://codeberg.org/look/saayix")
+         (introduction
+          (make-channel-introduction
+           "12540f593092e9a177eb8a974a57bb4892327752"
+           (openpgp-fingerprint
+            "3FFA 7335 973E 0A49 47FC  0A8C 38D5 96BE 07D3 34AB"))))
+       (channel
          (name 'small-guix)
          (url "https://codeberg.org/fishinthecalculator/small-guix.git")
          (branch "main")

@@ -1,0 +1,107 @@
+# 6 band sink equalizer
+#
+# Copy this file into a conf.d/ directory such as
+# ~/.config/pipewire/filter-chain.conf.d/
+#
+context.modules = [
+    { name = libpipewire-module-filter-chain
+        args = {
+            node.description = "Equalizer Sink - Truthear Nova"
+            media.name       = "Equalizer Sink - Truthear Nova"
+            filter.graph = {
+                nodes = [
+                    {
+                        type  = builtin
+                        name  = eq_band_1
+                        label = bq_highshelf
+                        control = { "Freq" = 0 "Q" = 1 "Gain" = -1.7 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_2
+                        label = bq_peaking
+                        control = { "Freq" = 105.0 "Q" = 0.7 "Gain" = -2.7 }
+                    }
+		    {
+                        type  = builtin
+                        name  = eq_band_3
+                        label = bq_peaking
+                        control = { "Freq" = 63.0 "Q" = 0.82 "Gain" = 2.3 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_4
+                        label = bq_peaking
+                        control = { "Freq" = 149.0 "Q" = 1.81 "Gain" = -0.9 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_5
+                        label = bq_peaking
+                        control = { "Freq" = 628.0 "Q" = 1.05 "Gain" = 0.8 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_6
+                        label = bq_peaking
+                        control = { "Freq" = 3235.0 "Q" = 3.01 "Gain" = -1.0 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_7
+                        label = bq_peaking
+                        control = { "Freq" = 904.0 "Q" = 2.98 "Gain" = 0.4 }
+                    }
+                    {
+                        type  = builtin
+                        name  = eq_band_8
+                        label = bq_peaking
+                        control = { "Freq" = 1311.0 "Q" = 2.75 "Gain" = -0.8 }
+                    }
+                   {
+                        type  = builtin
+                        name  = eq_band_9
+                        label = bq_peaking
+                        control = { "Freq" = 2062.0 "Q" = 3.43 "Gain" = 0.8 }
+                    }
+                   {
+                        type  = builtin
+                        name  = eq_band_10
+                        label = bq_peaking
+                        control = { "Freq" = 6511.0 "Q" = 5.29 "Gain" = 1.9 }
+                    }
+                   {
+                        type  = builtin
+                        name  = eq_band_11
+                        label = bq_highshelf
+                        control = { "Freq" = 10000.0 "Q" = 0.7 "Gain" = -2.7 }
+                    }
+                   
+
+                ]
+                links = [
+                    { output = "eq_band_1:Out" input = "eq_band_2:In" }
+                    { output = "eq_band_2:Out" input = "eq_band_3:In" }
+                    { output = "eq_band_3:Out" input = "eq_band_4:In" }
+                    { output = "eq_band_4:Out" input = "eq_band_5:In" }
+                    { output = "eq_band_5:Out" input = "eq_band_6:In" }
+                    { output = "eq_band_6:Out" input = "eq_band_7:In" }
+                    { output = "eq_band_7:Out" input = "eq_band_8:In" }
+                    { output = "eq_band_8:Out" input = "eq_band_9:In" }
+                    { output = "eq_band_9:Out" input = "eq_band_10:In" }
+                    { output = "eq_band_10:Out" input = "eq_band_11:In" }
+                ]
+            }
+	    audio.channels = 2
+	    audio.position = [ FL FR ]
+            capture.props = {
+                node.name   = "effect_input.eq7"
+            }
+            playback.props = {
+                node.name   = "effect_output.eq7"
+                node.passive = true
+                node.disabled = true
+            }
+        }
+    }
+]
