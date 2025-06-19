@@ -47,6 +47,9 @@
                                                       (program (file-append
                                                                 slock
                                                                 "/bin/i3lock"))))
+                (service nftables-service-type
+                         (nftables-configuration (ruleset (local-file
+                                                           "../config/nftables/nftables.conf"))))
                 (service nix-service-type)
                 (service iptables-service-type)
                 (service fwupd-service-type
@@ -59,6 +62,7 @@
                                                                         (name
                                                                          "mazin"))))))
                 (service pcscd-service-type))
+
           (modify-services %desktop-services
             (guix-service-type config =>
                                (guix-configuration (inherit config)
