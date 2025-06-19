@@ -75,7 +75,6 @@
                                             "senpai"
                                             "maim"
                                             "man-pages"
-                                            "intel-media-driver"
                                             "xrdb"
                                             "gnupg"
                                             "direnv"
@@ -196,8 +195,8 @@
                                    ("lf" ,(local-file "../config/lf"
                                                       #:recursive? #t))
 
-                                   ;; ("mpd" ,(local-file "config/mpd"
-                                   ;; #:recursive? #t))
+                                   ; ("aerc" ,(local-file "../config/aerc"
+                                   ; #:recursive? #t))
                                    
                                    ("ncmpcpp" ,(local-file "../config/ncmpcpp"
                                                 #:recursive? #t)))))
