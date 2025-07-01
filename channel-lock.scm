@@ -3,23 +3,12 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "473e5a62cd512cc0d5b4ac2c33be0bc0d0379435")
+          "926a17ea317d1f45c9fc06bcf49213eaad286500")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
             (openpgp-fingerprint
               "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
-      (channel
-        (name 'tailscale)
-        (url "https://github.com/umanwizard/guix-tailscale")
-        (branch "main")
-        (commit
-          "d0b1b05fdcf1407da72db803bf08fa6f223f9bae")
-        (introduction
-          (make-channel-introduction
-            "c72e15e84c4a9d199303aa40a81a95939db0cfee"
-            (openpgp-fingerprint
-              "9E53 FC33 B832 8C74 5E7B  31F7 0226 C10D 7877 B741"))))
       (channel
         (name 'saayix)
         (url "https://codeberg.org/look/saayix")
@@ -36,18 +25,24 @@
         (url "https://codeberg.org/fishinthecalculator/small-guix.git")
         (branch "main")
         (commit
-          "4d0a7a6f0a023bd1622a2e172d2e62232f21124d")
+          "a6817ebe5122f778a87221ee66846444882e02ea")
         (introduction
           (make-channel-introduction
             "f260da13666cd41ae3202270784e61e062a3999c"
             (openpgp-fingerprint
               "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
       (channel
+        (name 'guix-hpc-non-free)
+        (url "https://gitlab.inria.fr/guix-hpc/guix-hpc-non-free.git")
+        (branch "master")
+        (commit
+          "92f5783bd828036d6c85e5395bccb9dbac7e4708"))
+      (channel
         (name 'guix)
         (url "https://git.guix.gnu.org/guix.git")
         (branch "master")
         (commit
-          "cb2b282db7a4b2b0a97a32be842886a4e58b9dde")
+          "9b9b1f9bf5752e45d3faeea2f8792b89d1620f81")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -58,12 +53,40 @@
         (url "https://github.com/fishinthecalculator/gocix")
         (branch "main")
         (commit
-          "8bc2443ebc56dd5294d7bf1853ce7521572829a6")
+          "e014aa02c141d0781fc0e3c72c10915710079c2d")
         (introduction
           (make-channel-introduction
             "cdb78996334c4f63304ecce224e95bb96bfd4c7d"
             (openpgp-fingerprint
               "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
+      (channel
+        (name 'guix-hpc)
+        (url "https://gitlab.inria.fr/guix-hpc/guix-hpc.git")
+        (branch "master")
+        (commit
+          "3287896dfa6f70dc6356946200f55cafc0a0bb23"))
+      (channel
+        (name 'guix-science-nonfree)
+        (url "https://codeberg.org/guix-science/guix-science-nonfree.git")
+        (branch "master")
+        (commit
+          "96bddb944b2d9b1de0d2fd9f3db34b87d92bb87b")
+        (introduction
+          (make-channel-introduction
+            "58661b110325fd5d9b40e6f0177cc486a615817e"
+            (openpgp-fingerprint
+              "CA4F 8CF4 37D7 478F DA05  5FD4 4213 7701 1A37 8446"))))
+      (channel
+        (name 'guix-science)
+        (url "https://codeberg.org/guix-science/guix-science.git")
+        (branch "master")
+        (commit
+          "345dfdf8b9afbae96a8d4c47820e1b058d696093")
+        (introduction
+          (make-channel-introduction
+            "b1fe5aaff3ab48e798a4cce02f0212bc91f423dc"
+            (openpgp-fingerprint
+              "CA4F 8CF4 37D7 478F DA05  5FD4 4213 7701 1A37 8446"))))
       (channel
         (name 'sops-guix)
         (url "https://github.com/fishinthecalculator/sops-guix")
@@ -74,4 +97,15 @@
           (make-channel-introduction
             "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
             (openpgp-fingerprint
-              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2")))))
+              "8D10 60B9 6BB8 292E 829B  7249 AED4 1CC1 93B7 01E2"))))
+      (channel
+        (name 'guix-past)
+        (url "https://codeberg.org/guix-science/guix-past.git")
+        (branch "master")
+        (commit
+          "a6fc9859837de4a3d8cc824845f8bd28f68c530f")
+        (introduction
+          (make-channel-introduction
+            "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
+            (openpgp-fingerprint
+              "3CE4 6455 8A84 FDC6 9DB4  0CFB 090B 1199 3D9A EBB5")))))
