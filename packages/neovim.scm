@@ -56,7 +56,7 @@
   (package
     (inherit neovim)
     (name "neovim")
-    (version "0.11.1")
+    (version "0.11.3")
     (source
      (origin
        (method git-fetch)
@@ -65,7 +65,7 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0arypdiycmss5g9wav21hfdc384v1ly82jnsc32zincl2y3f628q"))))
+        (base32 "07kg1wkv0dhxj8a1xfzj2dnwsp232vd16n1j6jyxs0vvcqqbg5jj"))))
     (inputs (modify-inputs (package-inputs neovim)
               (replace "tree-sitter" tree-sitter-0.25)
               (append utf8proc-2.10.0)))))
