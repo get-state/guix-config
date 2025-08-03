@@ -29,6 +29,14 @@
                                             "git"
                                             "font-iosevka-term"
                                             "font-atkinson-hyperlegible"
+                                            "adwaita-icon-theme"
+                                            "hicolor-icon-theme"
+                                            "qogir-icon-theme"
+                                            "deluge"
+                                            "gnome-themes-extra"
+                                            "github-cli"
+                                            "carapace-bin"
+                                            "bat"
                                             "firefox"
                                             "xcalib"
                                             "xclip"
@@ -117,6 +125,8 @@
                  (simple-service 'some-useful-env-vars-service
                                  home-environment-variables-service-type
                                  `(("EDITOR" . "nvim")
+				   ("QT_QPA_PLATFORMTHEME" . "gtk3")
+				   ("GTK_THEME" . "Adwaita:dark")
                                    ("TERMINAL" . "alacritty -e")))
 
                  (service home-gpg-agent-service-type
