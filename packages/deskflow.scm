@@ -61,7 +61,11 @@
      (list
       #:phases
       #~(modify-phases %standard-phases
-          (delete 'check)
+    (replace 'check
+      (lambda _
+        (wrap-program "./bin/legacytests" 
+                      '("QT_QPA_PLATFORM" ":" = ("offscreen")))
+        (invoke "./bin/legacytests"))) 
           (add-after 'unpack 'patch-paths
             (lambda _
               (substitute* "src/lib/deskflow/unix/AppUtilUnix.cpp"
@@ -76,16 +80,13 @@
                   qttranslations
                   qtsvg
                   openssl-3.0
-                  googletest
                   libx11
                   libxtst
                   libxinerama
                   libxrandr
-                  pkg-config
                   libxkbcommon
                   libxkbfile
                   glib
-                  doxygen
                   mesa
                   vulkan-headers
                   tomlplusplus
@@ -100,7 +101,8 @@
                   libsm
                   libice
                   sysprof
-                  ninja))
+                  ))
+    (native-inputs (list ninja doxygen pkg-config googletest))
     (synopsis "Hello, GNU world: An example GNU package")
     (description
      "Deskflow is a free and open source keyboard and mouse sharing app. Use the keyboard, mouse, or trackpad of one computer to control nearby computers, and work seamlessly between them. It's like a software KVM (but without the video). TLS encryption is enabled by default. Wayland is supported. Clipboard sharing is supported.")
