@@ -24,7 +24,7 @@
   #:use-module (gnu system accounts)
   #:use-module (guix utils)
   #:use-module (small-guix services fwupd)
-  #:use-module (packages neovim)
+  #:use-module (clocktower packages neovim)
   #:export (default-services base-system laptop-services))
 
 (use-service-modules desktop)
