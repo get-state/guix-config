@@ -48,6 +48,7 @@
                                             "mpd"
                                             "gimp"
                                             "openssh"
+                                            "scrcpy"
                                             "signal-desktop"
                                             "xdg-utils"
                                             "libreoffice"
