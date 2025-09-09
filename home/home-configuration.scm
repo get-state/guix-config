@@ -186,6 +186,9 @@
                                    ("picom/picom.conf" ,(local-file
                                                          "../config/picom/picom.conf"))
 
+                                   ("nix/nix.conf" ,(local-file
+                                                         "../config/nix/nix.conf"))
+
                                    ("gtk-3.0/settings.ini" ,(local-file
                                                              "../config/other/gtk3-settings.ini"))
 
