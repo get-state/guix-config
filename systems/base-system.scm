@@ -18,6 +18,7 @@
   #:use-module (gnu services containers)
   #:use-module (gnu services pm)
   #:use-module (gnu services nix)
+  #:use-module (gnu services linux)
   #:use-module (gnu services networking)
   #:use-module (gnu services security-token)
   #:use-module (gnu system nss)
@@ -52,6 +53,7 @@
                                                            "../config/nftables/nftables.conf"))))
                 (service nix-service-type)
                 (service iptables-service-type)
+                (service fstrim-service-type)
                 (service fwupd-service-type
                          (fwupd-configuration (fwupd fwupd-nonfree)))
                 (service rootless-podman-service-type
