@@ -210,65 +210,38 @@ end
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilties
 
-require("lspconfig")["clangd"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
 
-require("lspconfig").pyright.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+vim.lsp.enable('clangd')
 
-require("lspconfig").flow.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+vim.lsp.enable('pyright')
 
-require("lspconfig").eslint.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+vim.lsp.enable('flow')
 
-require("lspconfig").ts_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+vim.lsp.enable('eslint')
 
-require("lspconfig").lua_ls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
+vim.lsp.enable('ts_ls')
+
+vim.lsp.enable('lua_ls')
+
+vim.lsp.enable('rust_analyzer')
 
 require("texmagic").setup({})
 
-require("lspconfig").texlab.setup({
-	cmd = { "texlab" },
-	filetypes = { "bib", "plaintex", "tex" },
-	settings = {
-		texlab = {
-			rootDirectory = nil,
-			build = {
-				executable = "tectonic",
-				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
-			},
-			forwardSearch = { executable = "zathura", args = { "%p" } },
-		},
-	},
-})
+-- require("lspconfig").texlab.setup({
+-- 	cmd = { "texlab" },
+-- 	filetypes = { "bib", "plaintex", "tex" },
+-- 	settings = {
+-- 		texlab = {
+-- 			rootDirectory = nil,
+-- 			build = {
+-- 				executable = "tectonic",
+-- 				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+-- 			},
+-- 			forwardSearch = { executable = "zathura", args = { "%p" } },
+-- 		},
+-- 	},
+-- })
 
-require("lspconfig").rust_analyzer.setup({
-	settings = { ["rust-analyzer"] = { diagnostics = { enable = false } } },
-	capabilities = capabilities,
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
 
 cfg = {
 	debug = false, -- set to true to enable debug logging
@@ -327,113 +300,6 @@ require("ibl").setup({
 require("nvim-surround").setup({})
 
 require("gitsigns").setup()
-
-require("catppuccin").setup({
-	flavour = "latte", -- latte, frappe, macchiato, mocha
-	background = {
-		-- :h background
-		light = "latte",
-		dark = "mocha",
-	},
-	transparent_background = false, -- disables setting the background color.
-	show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-	term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
-	dim_inactive = {
-		enabled = false, -- dims the background color of inactive window
-		shade = "dark",
-		percentage = 0.15, -- percentage of the shade to apply to the inactive window
-	},
-	no_italic = false, -- Force no italic
-	no_bold = false, -- Force no bold
-	no_underline = false, -- Force no underline
-	styles = {
-		-- Handles the styles of general hi groups (see `:h highlight-args`):
-		comments = { "italic" }, -- Change the style of comments
-		conditionals = { "italic" },
-		loops = {},
-		functions = {},
-		keywords = {},
-		strings = {},
-		variables = {},
-		numbers = {},
-		booleans = { "bold" },
-		properties = {},
-		types = {},
-		operators = {},
-	},
-	color_overrides = {
-		mocha = {
-			base = "#322e28",
-			mantle = "#4f4a44",
-			crust = "#6e6962",
-			surface0 = "#1e1e1e",
-			-- subtext0 = "#ffffff",
-			-- subtext1 = "#ffffff",
-			text = "#ffffff",
-		},
-	},
-	custom_highlights = function(colors)
-		return {
-			CmpItemKindSnippet = { fg = colors.base, bg = colors.mauve },
-			CmpItemKindKeyword = { fg = colors.base, bg = colors.red },
-			CmpItemKindText = { fg = colors.base, bg = colors.teal },
-			CmpItemKindMethod = { fg = colors.base, bg = colors.blue },
-			CmpItemKindConstructor = { fg = colors.base, bg = colors.blue },
-			CmpItemKindFunction = { fg = colors.base, bg = colors.blue },
-			CmpItemKindFolder = { fg = colors.base, bg = colors.blue },
-			CmpItemKindModule = { fg = colors.base, bg = colors.blue },
-			CmpItemKindConstant = { fg = colors.base, bg = colors.peach },
-			CmpItemKindField = { fg = colors.base, bg = colors.green },
-			CmpItemKindProperty = { fg = colors.base, bg = colors.green },
-			CmpItemKindEnum = { fg = colors.base, bg = colors.green },
-			CmpItemKindUnit = { fg = colors.base, bg = colors.green },
-			CmpItemKindClass = { fg = colors.base, bg = colors.yellow },
-			CmpItemKindVariable = { fg = colors.base, bg = colors.flamingo },
-			CmpItemKindFile = { fg = colors.base, bg = colors.blue },
-			CmpItemKindInterface = { fg = colors.base, bg = colors.yellow },
-			CmpItemKindColor = { fg = colors.base, bg = colors.red },
-			CmpItemKindReference = { fg = colors.base, bg = colors.red },
-			CmpItemKindEnumMember = { fg = colors.base, bg = colors.red },
-			CmpItemKindStruct = { fg = colors.base, bg = colors.blue },
-			CmpItemKindValue = { fg = colors.base, bg = colors.peach },
-			CmpItemKindEvent = { fg = colors.base, bg = colors.blue },
-			CmpItemKindOperator = { fg = colors.base, bg = colors.blue },
-			CmpItemKindTypeParameter = { fg = colors.base, bg = colors.blue },
-			CmpItemKindCopilot = { fg = colors.base, bg = colors.teal },
-		}
-	end,
-	integrations = {
-		cmp = true,
-		gitsigns = true,
-		nvimtree = true,
-		treesitter = true,
-		semantic_tokens = true,
-		native_lsp = {
-			enabled = true,
-			virtual_text = {
-				errors = { "italic" },
-				hints = { "italic" },
-				warnings = { "italic" },
-				information = { "italic" },
-			},
-			underlines = {
-				errors = { "underline" },
-				hints = { "underline" },
-				warnings = { "underline" },
-				information = { "underline" },
-			},
-			inlay_hints = { background = true },
-		},
-		indent_blankline = {
-			enabled = true,
-			-- scope_color = "text", -- catppuccin color (eg. `lavender`) Default: text
-			colored_indent_levels = false,
-		},
-		notify = false,
-		mini = { enabled = true, indentscope_color = "" },
-		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-	},
-})
 
 -- Default options:
 require("kanagawa").setup({
