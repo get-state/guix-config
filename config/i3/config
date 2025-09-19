@@ -71,8 +71,11 @@ smart_borders on
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec "alacritty -e nu"
+# set a terminal emulator
+set $term /bin/sh -c "alacritty msg create-window || alacritty"
+
+# start a terminal  
+bindsym $mod+Return exec $term
 
 # kill focused window
 bindsym $mod+Shift+q kill
