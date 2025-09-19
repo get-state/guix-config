@@ -1,8 +1,7 @@
 (define-module (systems tohsakanode)
   #:use-module (systems base-system)
   #:use-module (gnu)
-  #:use-module (gnu services xorg)
-  #:use-module (guix))
+  #:use-module (gnu services xorg))
 
 (operating-system
   (inherit base-system)

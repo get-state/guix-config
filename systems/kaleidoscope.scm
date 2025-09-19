@@ -2,8 +2,7 @@
   #:use-module (systems base-system)
   #:use-module (gnu services linux)
   #:use-module (nongnu services nvidia)
-  #:use-module (gnu)
-  #:use-module (guix))
+  #:use-module (gnu))
 
 (operating-system
   (inherit base-system)
