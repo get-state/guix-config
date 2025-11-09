@@ -7,7 +7,6 @@
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages shells)
-  #:use-module (gnu packages nushell)
   #:use-module (gnu packages hardware)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu services ssh)
@@ -24,8 +23,8 @@
   #:use-module (gnu system nss)
   #:use-module (gnu system accounts)
   #:use-module (guix utils)
-  #:use-module (small-guix services fwupd)
   #:use-module (clocktower packages neovim)
+  #:use-module (clocktower packages nushell)
   #:export (default-services base-system laptop-services))
 
 (use-service-modules desktop)
@@ -54,8 +53,6 @@
                 (service nix-service-type)
                 (service iptables-service-type)
                 (service fstrim-service-type)
-                (service fwupd-service-type
-                         (fwupd-configuration (fwupd fwupd-nonfree)))
                 (service rootless-podman-service-type
                          (rootless-podman-configuration (subgids (list (subid-range
                                                                         (name
@@ -69,11 +66,13 @@
             (guix-service-type config =>
                                (guix-configuration (inherit config)
                                                    (substitute-urls (append (list
-                                                                             "https://substitutes.nonguix.org")
+                                                                             "https://substitutes.nonguix.org"
+									     "https://guix.bordeaux.inria.fr")
                                                                      %default-substitute-urls))
                                                    (authorized-keys (append (list
                                                                              (local-file
-                                                                              "../signing-key.pub"))
+                                                                              "../signing-key.pub")
+									     (local-file "../hpc.pub"))
                                                                      %default-authorized-guix-keys))))
             (delete gdm-service-type)
             (network-manager-service-type config =>
@@ -114,7 +113,7 @@
 (define base-system
   (operating-system
     (host-name "base-system")
-    (timezone "Asia/Bahrain")
+    (timezone "Europe/London")
     (locale "en_US.utf8")
     (kernel linux)
     (initrd microcode-initrd)
@@ -127,7 +126,7 @@
     ;; Use the UEFI variant of GRUB with the EFI System
     ;; Partition mounted on /boot/efi.
     (bootloader (bootloader-configuration
-                  (bootloader grub-efi-bootloader)
+                  (bootloader grub-efi-removable-bootloader)
                   (targets '("/boot/EFI"))
                   (keyboard-layout keyboard-layout)))
 
@@ -162,7 +161,7 @@
                    (comment "")
                    (group "users")
                    (password #f)
-                   (shell (file-append nushell "/bin/nu"))
+                   (shell (file-append nu "/bin/nu"))
                    (supplementary-groups '("wheel" "netdev" "audio" "video"
                                            "cgroup"))) %base-user-accounts))
 
@@ -173,7 +172,7 @@
                        i3status
                        dmenu
                        alacritty
-                       nushell
+                       nu
                        brillo
                        fprintd
                        libfprint
