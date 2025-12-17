@@ -25,14 +25,13 @@
   ;; Below is the list of packages that will show up in your
   ;; Home profile, under ~/.guix-home/profile.
   (packages (specifications->packages (list "feh"
-                                            "lf"
                                             "git"
                                             "font-iosevka-term"
                                             "font-atkinson-hyperlegible"
                                             "adwaita-icon-theme"
                                             "hicolor-icon-theme"
+                                            "ppsspp"
                                             "qogir-icon-theme"
-                                            "deluge"
                                             "gnome-themes-extra"
                                             "github-cli"
                                             "carapace-bin"
@@ -42,7 +41,7 @@
                                             "xclip"
                                             "xmodmap"
                                             "curl"
-                                            "feh"
+                                            "deluge"
                                             "picom"
                                             "ncmpcpp"
                                             "mpd"
@@ -57,9 +56,6 @@
                                             "bibata-cursor-theme"
                                             "file"
                                             "fzf"
-                                            "nu-plugin-inc"
-                                            "nu-plugin-formats"
-                                            "nu-plugin-gstat"
                                             "ripgrep"
                                             "zathura"
                                             "distrobox"
@@ -114,7 +110,7 @@
                                                                           (videos
                                                                            "$HOME/Videos")))
 
-                 ;; Dbus is needed as a dependency
+                 ;; Dbus is needed as a dependency for pipewire
                  (service home-dbus-service-type)
                  ;; Configure pipewire service, should enable pulseaudio
                  (service home-pipewire-service-type)
@@ -126,8 +122,8 @@
                  (simple-service 'some-useful-env-vars-service
                                  home-environment-variables-service-type
                                  `(("EDITOR" . "nvim")
-				   ("QT_QPA_PLATFORMTHEME" . "gtk3")
-				   ("GTK_THEME" . "Adwaita:dark")
+                                   ("QT_QPA_PLATFORMTHEME" . "gtk3")
+                                   ("GTK_THEME" . "Adwaita:dark")
                                    ("TERMINAL" . "alacritty -e")))
 
                  (service home-gpg-agent-service-type
@@ -179,7 +175,7 @@
                                                        "../config/alacritty/alacritty.toml"))
 
                                    ("nushell/login.nu" ,(local-file
-                                                       "../config/nu/login.nu"))
+                                                         "../config/nu/login.nu"))
 
                                    ("fontconfig/conf.d/99-fonts.conf" ,(local-file
                                                                         "../config/fontconfig/fonts.conf"))
@@ -187,7 +183,7 @@
                                                          "../config/picom/picom.conf"))
 
                                    ("nix/nix.conf" ,(local-file
-                                                         "../config/nix/nix.conf"))
+                                                     "../config/nix/nix.conf"))
 
                                    ("gtk-3.0/settings.ini" ,(local-file
                                                              "../config/other/gtk3-settings.ini"))
@@ -211,8 +207,8 @@
                                    ("lf" ,(local-file "../config/lf"
                                                       #:recursive? #t))
 
-                                   ; ("aerc" ,(local-file "../config/aerc"
-                                   ; #:recursive? #t))
+                                   ;; ("aerc" ,(local-file "../config/aerc"
+                                   ;; #:recursive? #t))
                                    
                                    ("ncmpcpp" ,(local-file "../config/ncmpcpp"
                                                 #:recursive? #t)))))
