@@ -212,8 +212,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Set the wallpaper using feh
-exec --no-startup-id xrdb merge .Xresources
-exec --no-startup-id feh --bg-fill .config/i3/wallpaper.png
+exec --no-startup-id xrdb merge ~/.Xresources
+exec --no-startup-id feh --bg-fill ~/.config/i3/wallpaper.png
 
 			 # For light mode, set border to 50575C
 			 # For dark mode, set border to 88bfc1
@@ -250,12 +250,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id "brillo -q -U 5 -u 150000"
 ## Take screenshots
 bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date).png"
 
-
 # bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 exec_always --no-startup-id picom --vsync --use-damage --backend glx
-exec_always xcalib /home/$USER/.color/color.icc
-# exec --no-startup-id easyeffects --gapplication-service
+exec_always xcalib /home/$USER/.color/msi.icc
 exec_always --no-startup-id /bin/sh -c "~/.config/polybar/shades/launch.sh"
 
 ###############################################
-exec autorandr -c
+# exec autorandr -c
