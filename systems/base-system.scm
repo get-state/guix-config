@@ -4,6 +4,7 @@
 (define-module (systems base-system)
   #:use-module (gnu)
   #:use-module (nongnu packages linux)
+  #:use-module (abbe services tailscale)
   #:use-module (nongnu packages firmware)
   #:use-module (nongnu system linux-initrd)
   #:use-module (gnu packages shells)
@@ -51,6 +52,7 @@
                          (nftables-configuration (ruleset (local-file
                                                            "../config/nftables/nftables.conf"))))
                 (service nix-service-type)
+                (service tailscaled-service-type)
                 (service iptables-service-type)
                 (service fstrim-service-type)
                 (service rootless-podman-service-type
@@ -67,12 +69,13 @@
                                (guix-configuration (inherit config)
                                                    (substitute-urls (append (list
                                                                              "https://substitutes.nonguix.org"
-									     "https://guix.bordeaux.inria.fr")
+                                                                             "https://guix.bordeaux.inria.fr")
                                                                      %default-substitute-urls))
                                                    (authorized-keys (append (list
                                                                              (local-file
                                                                               "../signing-key.pub")
-									     (local-file "../hpc.pub"))
+                                                                             (local-file
+                                                                              "../hpc.pub"))
                                                                      %default-authorized-guix-keys))))
             (delete gdm-service-type)
             (network-manager-service-type config =>
