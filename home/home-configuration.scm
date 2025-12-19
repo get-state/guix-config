@@ -47,6 +47,8 @@
                                             "mpd"
                                             "gimp"
                                             "openssh"
+                                            "imv"
+                                            "sway"
                                             "scrcpy"
                                             "signal-desktop"
                                             "xdg-utils"
@@ -171,6 +173,8 @@
                                  home-xdg-configuration-files-service-type
                                  `(("i3/config" ,(local-file
                                                   "../config/i3/config"))
+				   ("sway/config" ,(local-file
+                                                  "../config/sway/config"))
                                    ("alacritty.toml" ,(local-file
                                                        "../config/alacritty/alacritty.toml"))
 
