@@ -3,29 +3,40 @@
         (url "https://gitlab.com/nonguix/nonguix")
         (branch "master")
         (commit
-          "926a17ea317d1f45c9fc06bcf49213eaad286500")
+          "880afd230881738b02498d6fbfae0529ae93d036")
         (introduction
           (make-channel-introduction
             "897c1a470da759236cc11798f4e0a5f7d4d59fbc"
             (openpgp-fingerprint
               "2A39 3FFF 68F4 EF7A 3D29  12AF 6F51 20A0 22FB B2D5"))))
       (channel
-        (name 'saayix)
-        (url "https://codeberg.org/look/saayix")
-        (branch "main")
+        (name 'abbe)
+        (url "https://codeberg.org/group/guix-modules.git")
+        (branch "mainline")
         (commit
-          "9995ab6fb8ce2eb8a603439caed86b8daf69c486")
+          "6dcc3bc5000420950781781580a929c57a2ffd34")
         (introduction
           (make-channel-introduction
-            "12540f593092e9a177eb8a974a57bb4892327752"
+            "8c754e3a4b49af7459a8c99de130fa880e5ca86a"
             (openpgp-fingerprint
-              "3FFA 7335 973E 0A49 47FC  0A8C 38D5 96BE 07D3 34AB"))))
+              "F682 CDCC 39DC 0FEA E116  20B6 C746 CFA9 E74F A4B0"))))
+      (channel
+        (name 'clocktower)
+        (url "https://codeberg.org/tohsakatypeclass/clocktower.git")
+        (branch "master")
+        (commit
+          "3e2c9d37e3962e7a96deb4b5bf5572124ef7086e")
+        (introduction
+          (make-channel-introduction
+            "9fb086fa9ee955c7daf755a5b114eedc030de99d"
+            (openpgp-fingerprint
+              "4B1E F810 76ED 1A25 D15C  CB18 4572 A777 FF18 DBCC"))))
       (channel
         (name 'small-guix)
         (url "https://codeberg.org/fishinthecalculator/small-guix.git")
         (branch "main")
         (commit
-          "a6817ebe5122f778a87221ee66846444882e02ea")
+          "436d33f83f2a1c3245f7486da0196cc86e7b26c5")
         (introduction
           (make-channel-introduction
             "f260da13666cd41ae3202270784e61e062a3999c"
@@ -36,13 +47,13 @@
         (url "https://gitlab.inria.fr/guix-hpc/guix-hpc-non-free.git")
         (branch "master")
         (commit
-          "92f5783bd828036d6c85e5395bccb9dbac7e4708"))
+          "2d3c6e455e096725771883531cdfb15fabc5324c"))
       (channel
         (name 'guix)
         (url "https://git.guix.gnu.org/guix.git")
         (branch "master")
         (commit
-          "9b9b1f9bf5752e45d3faeea2f8792b89d1620f81")
+          "5356a7eeb9b48dfecf56745dea785a5ec946f8de")
         (introduction
           (make-channel-introduction
             "9edb3f66fd807b096b48283debdcddccfea34bad"
@@ -53,7 +64,7 @@
         (url "https://github.com/fishinthecalculator/gocix")
         (branch "main")
         (commit
-          "e014aa02c141d0781fc0e3c72c10915710079c2d")
+          "0b6057a73549acae4493f7d0056d36fb7bccd0e9")
         (introduction
           (make-channel-introduction
             "cdb78996334c4f63304ecce224e95bb96bfd4c7d"
@@ -64,13 +75,13 @@
         (url "https://gitlab.inria.fr/guix-hpc/guix-hpc.git")
         (branch "master")
         (commit
-          "3287896dfa6f70dc6356946200f55cafc0a0bb23"))
+          "9ce7aba36c32c343dc32609f36e7d98672c93ca7"))
       (channel
         (name 'guix-science-nonfree)
         (url "https://codeberg.org/guix-science/guix-science-nonfree.git")
         (branch "master")
         (commit
-          "96bddb944b2d9b1de0d2fd9f3db34b87d92bb87b")
+          "b94a466109e546b01eada60804661bdcd18e6199")
         (introduction
           (make-channel-introduction
             "58661b110325fd5d9b40e6f0177cc486a615817e"
@@ -81,7 +92,7 @@
         (url "https://codeberg.org/guix-science/guix-science.git")
         (branch "master")
         (commit
-          "345dfdf8b9afbae96a8d4c47820e1b058d696093")
+          "946c7e781ed3b0dd9d20268d64eaacee1d6330a0")
         (introduction
           (make-channel-introduction
             "b1fe5aaff3ab48e798a4cce02f0212bc91f423dc"
@@ -92,7 +103,7 @@
         (url "https://github.com/fishinthecalculator/sops-guix")
         (branch "main")
         (commit
-          "8005f05fb1790cad007df3835798f4563e5ca550")
+          "381880aee336faf8d5e3562abced369c9ea1c3cc")
         (introduction
           (make-channel-introduction
             "0bbaf1fdd25266c7df790f65640aaa01e6d2dbc9"
@@ -103,7 +114,7 @@
         (url "https://codeberg.org/guix-science/guix-past.git")
         (branch "master")
         (commit
-          "a6fc9859837de4a3d8cc824845f8bd28f68c530f")
+          "473c942b509ab3ead35159d27dfbf2031a36cd4d")
         (introduction
           (make-channel-introduction
             "0c119db2ea86a389769f4d2b9c6f5c41c027e336"
