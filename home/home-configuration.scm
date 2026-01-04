@@ -16,10 +16,11 @@
              (gnu packages xdisorg)
              (gnu home services gnupg)
              (gnu home services ssh)
-             (rnrs io ports)
              (gnu services shepherd)
+             (gnu home services shells)
              (guix gexp)
-             (gnu home services shells))
+             (rnrs io ports)
+             (abbe packages golang))
 
 (home-environment
   ;; Below is the list of packages that will show up in your
@@ -151,6 +152,17 @@
                                                                          "1h30m"))))
 
                  (service home-x11-service-type)
+
+                 (simple-service 'carapace-nushell-setup
+                                 home-activation-service-type
+                                 #~(begin
+                                     (let ((cache-dir (string-append (getenv
+                                                                      "HOME")
+                                                       "/.cache/nushell")))
+                                       (mkdir-p cache-dir)
+                                       (system (string-append #$carapace
+                                                "/bin/carapace _carapace nushell > "
+                                                cache-dir "/carapace.nu")))))
 
                  (service home-unclutter-service-type
                           (home-unclutter-configuration (unclutter
