@@ -252,7 +252,7 @@ bindsym --release $mod+z exec maim  --select "/home/$USER/Pictures/$(date).png"
 
 # bindsym Print exec scrot ~/Pictures/%Y-%m-%d-%H-%M-%S.png
 exec_always --no-startup-id picom --vsync --use-damage --backend glx
-exec_always xcalib /home/$USER/.color/msi.icc
+exec_always xcalib /home/$USER/.color/msi-2.2-profile.icc
 exec_always --no-startup-id /bin/sh -c "~/.config/polybar/shades/launch.sh"
 
 ###############################################

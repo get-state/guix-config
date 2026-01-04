@@ -39,6 +39,7 @@
                                             "firefox"
                                             "xcalib"
                                             "xclip"
+                                            "pinfo"
                                             "xmodmap"
                                             "curl"
                                             "deluge"
@@ -172,11 +173,11 @@
                  (simple-service `wm-config
                                  home-xdg-configuration-files-service-type
                                  `(("i3/config" ,(local-file
-                                                  "../config/i3/config"))
-				   ("sway/config" ,(local-file
-                                                  "../config/sway/config"))
+                                                  "../config/i3/config-carbon"))
+                                   ("sway/config" ,(local-file
+                                                    "../config/sway/config"))
                                    ("alacritty.toml" ,(local-file
-                                                       "../config/alacritty/alacritty.toml"))
+                                                       "../config/alacritty/alacritty-carbon.toml"))
 
                                    ("nushell/login.nu" ,(local-file
                                                          "../config/nu/login.nu"))

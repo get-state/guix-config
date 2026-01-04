@@ -1,0 +1,49 @@
+[window]
+
+# opacity = 0.97
+
+padding.x = 20
+padding.y = 20
+dynamic_padding = true
+
+
+[font]
+
+normal.family = "Iosevka Nerd Font"
+
+size = 13.0
+
+# Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
+# Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a 
+# small box when a HEX is detected by the editor.
+# Nightfox Alacritty Colors
+## name: dayfox
+## upstream: https://github.com/edeneast/nightfox.nvim/raw/main/extra/dayfox/alacritty.toml
+
+[colors.primary]
+background = '#262626' # Gray 100
+foreground = '#e0e0e0' # Gray 900
+
+[colors.cursor]
+text = '#262626'
+cursor = '#e0e0e0'
+
+[colors.normal]
+black   = '#161616' # Gray 50 (for contrast)
+red     = '#ffd7d9' # Red 900
+green   = '#a7f0ba' # Green 900
+yellow  = '#fddc69' # Yellow 900
+blue    = '#d0e2ff' # Blue 900
+magenta = '#e8daff' # Purple 900
+cyan    = '#9ef0f0' # Teal 900
+white   = '#e0e0e0' # Gray 900
+
+[colors.bright]
+black   = '#525252' # Gray 300
+red     = '#fff1f1' # Red 950 (brighter variant)
+green   = '#defbe6' # Green 950
+yellow  = '#fcf4d6' # Yellow 950
+blue    = '#edf5ff' # Blue 950
+magenta = '#f6f2ff' # Purple 950
+cyan    = '#d9fbfb' # Teal 950
+white   = '#f4f4f4' # Gray 950
