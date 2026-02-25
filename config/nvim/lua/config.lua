@@ -17,14 +17,29 @@ require("lazy").setup({
 	"nvim-lualine/lualine.nvim",
 	"nvim-tree/nvim-web-devicons",
 	"lewis6991/gitsigns.nvim",
+	"whonore/Coqtail",
+	{
+		'isovector/cornelis',
+		name = 'cornelis',
+		ft = 'agda',
+		-- build = 'cabal install exe:cornelis --installdir=/home/mazin/.local/share/nvim/lazy/cornelis/bin',
+		-- timeout = 1000,
+		dependencies = {'neovimhaskell/nvim-hs.vim', 'kana/vim-textobj-user'},
+		version = '2.7.0',
+	},
 	"j-hui/fidget.nvim",
 	"onsails/lspkind.nvim",
+	{
+  url = "https://codeberg.org/jthvai/lavender.nvim",
+  branch = "stable", -- versioned tags + docs updates from main
+  lazy = false,
+  priority = 1000,
+},
 	"rebelot/kanagawa.nvim",
 	"vague2k/vague.nvim",
 	"yorickpeterse/nvim-pqf",
 	"windwp/nvim-autopairs",
 	"kylechui/nvim-surround",
-	"tpope/vim-dispatch",
 	"nvim-treesitter/nvim-treesitter",
 	"nvim-treesitter/nvim-treesitter-textobjects",
 	{
@@ -36,6 +51,7 @@ require("lazy").setup({
 					"hrsh7th/cmp-nvim-lsp",
 					"hrsh7th/cmp-buffer",
 					"hrsh7th/cmp-path",
+					"dmitmel/cmp-digraphs",
 					"hrsh7th/cmp-cmdline",
 					"saadparwaiz1/cmp_luasnip",
 				},
@@ -54,9 +70,7 @@ require("lazy").setup({
 	"sbdchd/neoformat",
 	"ray-x/lsp_signature.nvim",
 	"lukas-reineke/indent-blankline.nvim",
-	"jakewvincent/texmagic.nvim",
 	"neanias/everforest-nvim",
-	{ "xuhdev/vim-latex-live-preview", ft = "tex" },
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }, {
 	profiling = {
@@ -83,12 +97,12 @@ require("nvim-treesitter.configs").setup({
 		-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
 		-- the name of the parser)
 		-- list of language that will be disabled
-		disable = { "latex" },
+		disable = { },
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 		-- Using this option may slow down your editor, and you may see some duplicate highlights.
 		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
+		additional_vim_regex_highlighting = {},
 	},
 })
 
@@ -146,6 +160,7 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" }, -- { name = 'vsnip' }, -- For vsnip users.
 		{ name = "luasnip" }, -- For luasnip users.
+		-- { name = "digraphs" }, -- Digarphs
 		-- { name = 'snippy' }, -- For snippy users.
 		-- { name = "ultisnips" }, -- For ultisnips users.
 		{ name = "path" }, -- For ultisnips users.
@@ -210,37 +225,46 @@ end
 -- local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilties
 
+vim.lsp.config('texlab', {
+	cmd = { "texlab" }, 
+	filetypes = { "tex", "bib", "plaintex" },
+	settings = {
+		texlab = {
+			bibtexFormatter = "texlab",
+			build = {
+				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+				executable = "tectonic",
+				forwardSearchAfter = true,
+				onSave = true,
+			},
+			chktex = {
+				onEdit = false,
+				onOpenAndSave = false,
+			},
+			diagnosticsDelay = 300,
+			formatterLineLength = 80,
+			forwardSearch = {
+				executable = "zathura",
+				args = { "--synctex-forward", "%l:1:%f", "%p" },
+			},
+			latexFormatter = "latexindent",
+			latexindent = {
+				modifyLineBreaks = false,
+			},
+		},
+	},
+})
 
 vim.lsp.enable('clangd')
-
 vim.lsp.enable('pyright')
-
 vim.lsp.enable('flow')
-
 vim.lsp.enable('eslint')
-
 vim.lsp.enable('ts_ls')
-
 vim.lsp.enable('lua_ls')
-
+vim.lsp.enable('nushell')
 vim.lsp.enable('rust_analyzer')
-
-require("texmagic").setup({})
-
--- require("lspconfig").texlab.setup({
--- 	cmd = { "texlab" },
--- 	filetypes = { "bib", "plaintex", "tex" },
--- 	settings = {
--- 		texlab = {
--- 			rootDirectory = nil,
--- 			build = {
--- 				executable = "tectonic",
--- 				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
--- 			},
--- 			forwardSearch = { executable = "zathura", args = { "%p" } },
--- 		},
--- 	},
--- })
+vim.lsp.enable('guile_ls')
+vim.lsp.enable('texlab')
 
 
 cfg = {
@@ -362,6 +386,7 @@ require("vague").setup({
 	-- optional configuration here
 })
 
+
 vim.cmd.colorscheme("kanagawa-dragon")
 
 -- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = "#1e1e1e" })
@@ -403,4 +428,5 @@ require("lualine").setup({
 	extensions = {},
 })
 
+-- vim.env.PATH = vim.env.PATH .. ':' .. vim.fn.expand('~/.local/share/nvim/lazy/cornelis/bin/')
 require("luasnip.loaders.from_vscode").lazy_load()

@@ -34,5 +34,29 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+augroup agda_bindings
+  autocmd!
+  autocmd FileType agda call AgdaFiletype()
+  autocmd BufRead,BufNewFile *.markdown.agda call AgdaFiletype()
+augroup END
+function! AgdaFiletype()
+    nnoremap <buffer> <leader>l :CornelisLoad<CR>
+    nnoremap <buffer> <leader>r :CornelisRefine<CR>
+    nnoremap <buffer> <leader>d :CornelisMakeCase<CR>
+    nnoremap <buffer> <leader>, :CornelisTypeContext<CR>
+    nnoremap <buffer> <leader>. :CornelisTypeContextInfer<CR>
+    nnoremap <buffer> <leader>n :CornelisSolve<CR>
+    nnoremap <buffer> <leader>a :CornelisAuto<CR>
+    nnoremap <buffer> gd        :CornelisGoToDefinition<CR>
+    nnoremap <buffer> [/        :CornelisPrevGoal<CR>
+    nnoremap <buffer> ]/        :CornelisNextGoal<CR>
+    nnoremap <buffer> <C-A>     :CornelisInc<CR>
+    nnoremap <buffer> <C-X>     :CornelisDec<CR>
+endfunction
+
+let g:cornelis_split_location = 'bottom'
+let g:cornelis_max_size = 15
+let g:cornelis_use_global_binary = 1
+
 " lua stuff
 lua require('config')
